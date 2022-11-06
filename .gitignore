@@ -26,6 +26,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+*.npmrc
 
 test-results/
 playwright-report/
