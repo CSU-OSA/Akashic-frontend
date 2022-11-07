@@ -1,8 +1,4 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "compilerOptions": {
-    "jsx": "preserve"
-  },
   "files": [],
   "references": [
     {
