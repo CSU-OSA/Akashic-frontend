@@ -1,10 +1,11 @@
-import type { ISystemState } from "@/domain/SystemState.interface";
+import type { ISystemState } from "@/domain/systemState.interface";
 import { defineStore } from "pinia";
 
 const initState = (): ISystemState => ({
   isLogin: false,
   isAdmin: false,
   token: null,
+  user: null,
 });
 
 export const useSystemStateStore = defineStore("system_state", {

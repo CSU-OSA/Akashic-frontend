@@ -1,0 +1,4 @@
+[
+    { "label": "主页", "to": "/" },
+    { "label": "Wiki", "to": "/wiki" }
+]
