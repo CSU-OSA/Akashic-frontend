@@ -1,7 +1,7 @@
 <template>
   <n-space vertical>
     <n-space>
-      <n-avatar round size="small" />
+      <n-avatar round size="small"/>
       <n-h4>User NickName</n-h4>
     </n-space>
 
@@ -15,11 +15,11 @@
       <n-input placeholder="Find a Resource" size="large"></n-input>
 
       <n-list hoverable clickable>
-        <n-list-item v-for="item in UserResourceDataDemos" :key="item.id">
+        <n-list-item v-for="item in UserResourceDataDemos" :key="item.id" @click="clickEvent">
           <n-thing>
             <template #avatar>
               <n-avatar round size="small">
-
+                <n-icon :component="iconType(item)" />
               </n-avatar>
             </template>
             <template #header>
@@ -32,7 +32,7 @@
     <n-divider />
 
     <n-space vertical>
-      <n-h4>Recent Activities</n-h4>
+      <n-h4>Recent Tags</n-h4>
       <n-space>
         <n-tag type="success">SE</n-tag>
         <n-tag type="info">Golang</n-tag>
@@ -43,24 +43,36 @@
 </template>
 
 <script setup lang="ts">
+import type { IResource } from "@/domain/resource.interface";
+import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
 const NewUserResourceData = (
-  id: number,
-  title: string,
-  url: string
+  args: IResource
 ) => {
-  return {
-    id,
-    title,
-    url
-  }
+  return args
 }
 
 const UserResourceDataDemos = [
-  NewUserResourceData(1, 'xxxxxx', '/xxx/xxx'),
-  NewUserResourceData(2, 'yyyyyy', '/yyyy/yy'),
-  NewUserResourceData(3, 'gggggg', '/gggg/gg'),
-  NewUserResourceData(4, 'aaaaa', '/aaa/aaaa')
+  NewUserResourceData({id: 1, title: '软件工程专业wiki', description: '', type: 'wiki', url: '/wiki/xxxx'}),
+  NewUserResourceData({id: 2, title: 'JPetStore-SpringBoot Code', description: '', type: 'code', url: '/code/xxx'}),
+  NewUserResourceData({id: 3, title: 'Java语言设计课程资源', description: '', type: 'text', url: '/text/java'}),
+  NewUserResourceData({id: 4, title: '软件创新大赛萌新攻略', description: '', type: 'text', url: '/text/sss'})
 ]
+
+const iconType = (data: IResource) => {
+  if(data.type === 'code') {
+    return CodeSlash
+  }
+  else if(data.type === 'wiki') {
+    return EarthSharp
+  }
+  else {
+    return DocumentTextOutline
+  }
+}
+
+const clickEvent = () => {
+  alert("Now our project is a dev version, The Resource cant read.")
+}
 </script>
 
 <style scoped></style>

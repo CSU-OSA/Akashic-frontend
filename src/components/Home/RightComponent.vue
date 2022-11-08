@@ -1,6 +1,6 @@
 <template>
   <n-space vertical>
-    <n-h4>Latest FootPoint</n-h4>
+    <n-h4>Latest FootPoint🚶‍</n-h4>
     <n-timeline>
       <n-timeline-item
         v-for="item in demoDataList"
@@ -14,16 +14,22 @@
   <n-divider />
 
   <n-space vertical>
-    <n-h4>Hot Resource</n-h4>
+    <n-h4>Hot Resource🔥</n-h4>
     <n-list hoverable clickable>
       <n-message-provider>
         <n-list-item v-for="item in demoHotDataList" :key="item.id">
           <n-thing
             :title="item.title"
-            :description="item.content"
+            :description="item.description"
             @click="listItemClickEvent"
             description-style="font-size: 0.75em"
-          />
+          >
+            <template #avatar>
+              <n-avatar round size="small">
+                <n-icon :component="iconType(item)"></n-icon>
+              </n-avatar>
+            </template>
+          </n-thing>
         </n-list-item>
       </n-message-provider>
     </n-list>
@@ -32,6 +38,10 @@
 </template>
 
 <script setup lang="ts">
+import type { IResource } from "@/domain/resource.interface";
+import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
+
+
 // demo死数据
 const createDemoTimeData = (id: number, content: string, time: string) => {
   return {
@@ -43,17 +53,9 @@ const createDemoTimeData = (id: number, content: string, time: string) => {
 
 // demo死数据
 const createHotData = (
-  id: number,
-  title: string,
-  content: string,
-  url: string
+  args : IResource
 ) => {
-  return {
-    id,
-    title,
-    content,
-    url,
-  };
+  return args
 };
 const demoDataList = [
   createDemoTimeData(1, "浏览了xxxx", "10 minutes ago"),
@@ -64,21 +66,23 @@ const demoDataList = [
 ];
 
 const demoHotDataList = [
-  createHotData(
-    1,
-    "软件工程课程攻略",
-    "关于软件过程课程的一些经验分享和资源总结",
-    "/resource/class/01"
-  ),
-  createHotData(
-    2,
-    "离散数学课程资源",
-    "关于计算机学院离散数学课程的资源分享",
-    "/resource/class/08"
-  ),
-  createHotData(3, "软件杯竞赛经验分享--xxx", "", "/resource/078"),
-  createHotData(4, "计科专业wiki", "", "/resource/wiki/125"),
+  createHotData({id: 1, title: '软件工程专业wiki', description: '这里是软件工程专业的wiki, 正在不断维护中', type: 'wiki', url:'/wiki/xxx'}),
+  createHotData({id: 2, title: '离散数学课程资源', description: '计算机学院离散数学课程相关资源以及学习方法总结', type: 'text', url:'/text/xxxx'}),
+  createHotData({id: 3, title: '软件杯竞赛经验分享--xxx', description: '来着xxx的软件杯竞赛经验分享', type: 'text', url:'/text/xxxxx'}),
+  createHotData({id: 4, title: '计科专业wiki', description: '这里是计科专业的wiki，正在不断维护中', type:'wiki', url: '/url/xxxxxxxx'}),
 ];
+
+const iconType = (data: IResource) => {
+  if(data.type === 'code') {
+    return CodeSlash
+  }
+  else if(data.type === 'wiki') {
+    return EarthSharp
+  }
+  else {
+    return DocumentTextOutline
+  }
+}
 
 const listItemClickEvent = () => {
   alert("Now our project is a dev version, The Resource cant read.");
