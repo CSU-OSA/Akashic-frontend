@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="min-h-full min-w-full flex flex-col justify-start items-center mt-20"
-  >
+  <div class="flex flex-col justify-start items-center mt-20">
     <div
       class="w-full flex flex-row justify-items-center items-center mb-8 w-4/5 xl:w-1/2 bg-gray rounded"
     >
@@ -39,7 +37,7 @@ import { isPost, isRepo } from "@/domain/searchResult.interface";
 import SearchResultPostItem from "@/components/SearchResult/SearchResultPostItem.vue";
 import SearchResultRepositoryItem from "@/components/SearchResult/SearchResultRepositoryItem.vue";
 import SearchResultWikiItem from "@/components/SearchResult/SearchResultWikiItem.vue";
-import type { TagStatus } from "@/components/SearchResult/SearchResultPageTagItem.vue";
+import type TagStatus from "@/components/SearchResult/SearchResultPageTagItem.vue";
 import SearchResultPageTagItem from "@/components/SearchResult/SearchResultPageTagItem.vue";
 import type { Ref } from "vue";
 import { ref } from "vue";
