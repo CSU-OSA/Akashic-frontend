@@ -4,16 +4,18 @@
       <UserComponent />
     </div>
     <div class="middle">
-      Message
+      <MiddleContent />
     </div>
     <div class="right">
-      FootPoint
+      <RightComponent />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import UserComponent from "./UserComponent.vue"
+import UserComponent from "./UserComponent.vue";
+import RightComponent from "./RightComponent.vue";
+import MiddleContent from "./MiddleContent.vue";
 </script>
 
 <style scoped>
@@ -30,21 +32,21 @@ import UserComponent from "./UserComponent.vue"
 }
 
 .left {
-  width: 500px;
-  background: azure;
-  padding: 30px;
+  width: 550px;
+  background: rgb(253, 254, 254);
+  padding: 35px;
 }
 
 .right {
-  width: 500px;
-  background: floralwhite;
+  width: 600px;
+  background: rgb(242, 243, 244);
   padding: 20px;
 }
 
 .middle {
-  background: floralwhite;
+  background: rgb(242, 243, 244);
   width: 100%;
-  margin: 0 20px;
+  margin: 0 0;
   padding: 20px;
 }
 </style>
