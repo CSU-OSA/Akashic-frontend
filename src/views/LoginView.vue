@@ -1,9 +1,10 @@
 <template>
+
     <n-form ref="formRef" :model="model" :rules="rules" label-placement="left" label-width="auto"
         require-mark-placement="right-hanging" :style="{
             maxWidth: '800px',
         }">
-        <n-form-item label="username" path="username">
+        <n-form-item label="" path="username">
             <n-input v-model:value="model.username" placeholder="username">
                 <template #prefix>
                     <n-icon size="18" color="808695">
@@ -13,7 +14,7 @@
             </n-input>
         </n-form-item>
 
-        <n-form-item label="password" path="password">
+        <n-form-item label="" path="password">
             <n-input v-model:value="model.password" placeholder="请输入密码" type="password" show-password-on="click">
                 <template #prefix>
                     <n-icon size="18" color="808695">
@@ -22,6 +23,13 @@
                 </template>
             </n-input>
         </n-form-item>
+
+        <n-form-item>
+            <n-button type="primary" block>
+                login
+            </n-button>
+        </n-form-item>
+
     </n-form>
 </template>
 
