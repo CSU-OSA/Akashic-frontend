@@ -1,5 +1,17 @@
+<template>
+  <div class="w-full flex flex-col tagItem">
+    <div class="w-full flex flex-row">
+      <TagCheckBox :tag="tag" :tagStatus="tagStatus" />
+      <ExpandIcon />
+    </div>
+    <SubTagList />
+  </div>
+</template>
+
+<script setup lang="tsx">
 import type { ISearchTag } from "@/domain/searchResult.interface";
 import type { Ref } from "vue";
+import SearchResultPageTagItem from "@/components/SearchResult/SearchResultPageTagItem.vue";
 
 export interface TagStatus {
   display: string;
@@ -10,64 +22,50 @@ export interface TagStatus {
   subTags: string[];
 }
 
-export function SearchResultPageTagItem({
-  tag,
-  tagStatus,
-}: {
+const props = defineProps<{
   tag: ISearchTag;
   tagStatus: Map<string, Ref<TagStatus>>;
-}) {
-  const thisStatus = tagStatus.get(tag.label);
+}>();
+
+function ExpandIcon() {
+  const thisStatus = props.tagStatus.get(props.tag.label);
   if (!thisStatus) throw Error("UnexpectedError-TagStatusNotFound!");
-
-  const ExpandIcon = () => {
-    if (thisStatus.value.subTags.length != 0) {
-      //如果有子项，则渲染SVG展开图标
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          class={
-            "w-6 h-6 ml-auto transition-all duration-300 ease-in-out transform-gpu svgLabel"
-          }
-        >
-          <path
-            d="M16.88 2.88a1.25 1.25 0 0 0-1.77 0L6.7 11.29a.996.996 0 0 0 0 1.41l8.41 8.41c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.54 12l7.35-7.35c.48-.49.48-1.28-.01-1.77z"
-            fill="currentColor"
-          ></path>
-        </svg>
-      );
-    } else return null;
-  };
-
-  const SubTagList = () => {
-    if (tag.subTags.length === 0) return null;
-    const elementList: JSX.Element[] = [];
-    for (const i of tag.subTags) {
-      elementList.push(
-        <SearchResultPageTagItem tag={i} tagStatus={tagStatus} />
-      );
-    }
-
+  if (thisStatus.value.subTags.length != 0) {
+    //如果有子项，则渲染SVG展开图标
     return (
-      <div
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
         class={
-          "grid gap-2 transition-all duration-500 ease-in-out transform-gpu subTagList"
+          "w-5 h-5 ml-auto transition-all duration-300 ease-in-out transform-gpu svgLabel"
         }
-        style={"width: 200px"}
       >
-        {elementList}
-      </div>
+        <path
+          d="M16.88 2.88a1.25 1.25 0 0 0-1.77 0L6.7 11.29a.996.996 0 0 0 0 1.41l8.41 8.41c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.54 12l7.35-7.35c.48-.49.48-1.28-.01-1.77z"
+          fill="currentColor"
+        ></path>
+      </svg>
     );
-  };
+  } else return null;
+}
+
+function SubTagList() {
+  if (props.tag.subTags.length === 0) return null;
+  const elementList = [];
+  for (const i of props.tag.subTags) {
+    elementList.push(
+      <SearchResultPageTagItem tag={i} tagStatus={props.tagStatus} />
+    );
+  }
 
   return (
-    <div class={"w-full flex flex-col tagItem"}>
-      <div class={"w-full flex flex-row"}>
-        <TagCheckBox tag={tag} tagStatus={tagStatus} />
-        <ExpandIcon />
-      </div>
-      <SubTagList />
+    <div
+      class={
+        "grid gap-2 transition-all duration-500 ease-in-out transform-gpu subTagList"
+      }
+      style={"width: 200px"}
+    >
+      {elementList}
     </div>
   );
 }
@@ -82,7 +80,7 @@ function TagCheckBox({
   const thisStatus = tagStatus.get(tag.label);
   if (!thisStatus) throw Error("UnexpectedError-TagStatusNotFound!");
 
-  //向下递归更新SubTags选择状态
+  //Func:向下递归更新SubTags选择状态
   const itemCheckedHandler_RecurseDown = (
     checked: boolean,
     subTags: string[]
@@ -97,7 +95,7 @@ function TagCheckBox({
     }
   };
 
-  //向上递归更新ParentTag选择状态
+  //Func:向上递归更新ParentTag选择状态
   const itemCheckedHandler_RecurseUp = (parentTag: string) => {
     if (parentTag === "") return;
     const refParentTag = tagStatus.get(parentTag);
@@ -142,3 +140,4 @@ function TagCheckBox({
     </n-checkbox>
   );
 }
+</script>

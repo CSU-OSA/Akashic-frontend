@@ -1,12 +1,11 @@
 .subTagList {
     background-color: #ffffff;
-    border-color: #282828;
-    border-width: 1px;
     border-radius: 10px;
     position: absolute;
     display: inline-block;
     margin-top: 25px;
     margin-left: 23px;
+    box-shadow: 3px 3px 5px #808080;
     z-index: 10;
     padding: 5px;
     --tw-translate-x: -50%;
