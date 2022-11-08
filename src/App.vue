@@ -1,7 +1,7 @@
 <template>
   <n-config-provider
     ref="appLayout"
-    class="app-layout hide-aside"
+    class="app-layout"
     :theme-overrides="themeOverrides"
   >
     <header>
