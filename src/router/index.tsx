@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { SearchResult } from "@/views/SearchResult";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -7,6 +8,10 @@ const router = createRouter({
     {
       path: "/",
       component: HomeView,
+    },
+    {
+      path: "/search",
+      component: <SearchResult />,
     },
   ],
 });
