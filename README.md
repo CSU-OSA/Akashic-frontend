@@ -2,9 +2,9 @@
 
 中文 · [English](https://github.com/CSU-OSA/Akashic-frontend/blob/master/README.en-US.md)
 
-该项目包含[Akashic](https://github.com/CSU-OSA/Akashic)平台的前端内容。
+该项目是[Akashic](https://github.com/CSU-OSA/Akashic)平台项目的前端子项目。
 
-如果您想为项目贡献，请参阅Akashic平台项目的[贡献指南]()。
+如果您也想为本项目出一份力，请参阅Akashic-frontend的[贡献指南](https://github.com/CSU-OSA/Akashic-frontend/blob/master/doc/CONTRIBUTING.md)。
 
 ## 文档
 
