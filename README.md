@@ -1,71 +1,32 @@
-# Akashic
+# Akashic-Frontend [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This template should help get you started developing with Vue 3 in Vite.
+中文 · [English](https://github.com/CSU-OSA/Akashic-frontend/blob/master/README.en-US.md)
 
-## Recommended IDE Setup
+该项目包含[Akashic](https://github.com/CSU-OSA/Akashic)平台的前端内容。
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+如果您想为项目贡献，请参阅Akashic平台项目的[贡献指南]()。
 
-## Type Support for `.vue` Imports in TS
+## 文档
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+* [概述](https://github.com/CSU-OSA/Akashic-frontend/blob/master/doc/Info.md)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+> 使用 **[pnpm](https://pnpm.io/zh/)** 安装依赖项
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## 构建与运行
 
-## Customize configuration
+<details>
+  <summary> dev </summary>
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+  安装/更新依赖：
+  ```shell
+  # 开发依赖
+  pnpm i -D
+  # 依赖  
+  pnpm i --save
+  ```
 
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-pnpm build
-
-# Runs the end-to-end tests
-pnpm test:e2e
-# Runs the tests only on Chromium
-pnpm test:e2e --project=chromium
-# Runs the tests of a specific file
-pnpm test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
-pnpm test:e2e --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+  运行：
+  ```shell
+  pnpm run dev
+  ```
+</details>
