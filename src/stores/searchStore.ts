@@ -1,5 +1,6 @@
 import type { AutoCompleteOption } from "naive-ui";
 import { defineStore } from "pinia";
+import tags from "$/tags.json";
 
 const initState = () => ({
   searchString: "" as string,
@@ -11,7 +12,7 @@ export const useSearchStore = defineStore("search-store", {
   actions: {
     async search(str: string) {
       this.searchString = str;
-      this.autoCompleteOptions = [{ label: "akashic" }, { label: "search" }];
+      this.autoCompleteOptions = tags;
     },
   },
 });

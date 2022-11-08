@@ -22,7 +22,7 @@
     <n-divider />
 
     <n-space vertical>
-      <n-h4>Your Tags</n-h4>
+      <n-h4>Recent Activities</n-h4>
       <n-space>
         <n-tag type="success">SE</n-tag>
         <n-tag type="info">Golang</n-tag>

@@ -1,8 +1,12 @@
+const theme = require('./config/theme.json');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["src/**/*.{vue,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: theme.colors
+    },
   },
   plugins: [],
 };

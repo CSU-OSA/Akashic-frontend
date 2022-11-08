@@ -29,18 +29,21 @@ import UserComponent from "./UserComponent.vue"
 }
 
 .left {
-  width: 400px;
+  width: 500px;
   background: azure;
+  padding: 30px;
 }
 
 .right {
-  width: 200px;
+  width: 500px;
   background: floralwhite;
+  padding: 20px;
 }
 
 .middle {
   background: floralwhite;
   width: 100%;
   margin: 0 20px;
+  padding: 20px;
 }
 </style>
