@@ -13,6 +13,7 @@ specifiers:
   '@vue/test-utils': ^2.1.0
   '@vue/tsconfig': ^0.1.3
   autoprefixer: ^10.4.13
+  casdoor-vue-sdk: ^1.2.3
   eslint: ^8.22.0
   eslint-plugin-vue: ^9.3.0
   jsdom: ^20.0.1
@@ -49,6 +50,7 @@ devDependencies:
   '@vue/test-utils': 2.2.1_vue@3.2.41
   '@vue/tsconfig': 0.1.3_@types+node@16.18.3
   autoprefixer: 10.4.13_postcss@8.4.18
+  casdoor-vue-sdk: 1.2.3_vue@3.2.41
   eslint: 8.27.0
   eslint-plugin-vue: 9.7.0_eslint@8.27.0
   jsdom: 20.0.2
@@ -1132,6 +1134,25 @@ packages:
     resolution: {integrity: sha512-IB1BXTZKPDVPM7cnV4iaKaHxckvdr/3xtctB3f7Hmenx3qYBhGtTZ//7EllK66aKXW98Lx0+7Yr0kxBtIt3tzg==}
     dev: true
 
+  /casdoor-js-sdk/0.2.7:
+    resolution: {integrity: sha512-pEI7chd6KWDa7dhBxl3zDY+LagG40bBPoxdPMOZ5OG2gFMTXwRQ4Ka1do0giJsd2YTeAU3u6vwP62YmiQVzgSQ==}
+    dev: true
+
+  /casdoor-vue-sdk/1.2.3_vue@3.2.41:
+    resolution: {integrity: sha512-HchA/7P4BjEKX66RZw60zDoA3gB1CLIliT1iAfj1WFLfse+fvwqPf/M7sB446ThExbjCQ25mTIy6KVar2RslHA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.3.0
+      vue: ^2.0.0 || >=3.0.0-rc.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      casdoor-js-sdk: 0.2.7
+      core-js: 3.26.0
+      vue: 3.2.41
+      vue-demi: 0.13.11_vue@3.2.41
+    dev: true
+
   /chai/4.3.6:
     resolution: {integrity: sha512-bbcp3YfHCUzMOvKqsztczerVgBKSsEijCySNlHHbX3VG1nskvqjz5Rfso1gGwD6w6oOV3eI60pKuMOV5MV7p3Q==}
     engines: {node: '>=4'}
@@ -1215,6 +1236,11 @@ packages:
 
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
+    dev: true
+
+  /core-js/3.26.0:
+    resolution: {integrity: sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw==}
+    requiresBuild: true
     dev: true
 
   /cross-spawn/6.0.5:
@@ -3454,7 +3480,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.41
-    dev: false
 
   /vue-eslint-parser/9.1.0_eslint@8.27.0:
     resolution: {integrity: sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ==}
