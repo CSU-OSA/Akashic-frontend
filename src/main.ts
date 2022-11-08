@@ -21,6 +21,6 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(naive);
-app.use(casdoor,config);
+app.use(casdoor, config);
 
 app.mount("#app");

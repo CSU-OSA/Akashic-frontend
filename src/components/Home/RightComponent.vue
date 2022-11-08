@@ -17,13 +17,14 @@
     <n-h4>Hot Resource</n-h4>
     <n-list hoverable clickable>
       <n-message-provider>
-      <n-list-item v-for="item in demoHotDataList" :key="item.id">
+        <n-list-item v-for="item in demoHotDataList" :key="item.id">
           <n-thing
             :title="item.title"
             :description="item.content"
             @click="listItemClickEvent"
+            description-style="font-size: 0.75em"
           />
-      </n-list-item>
+        </n-list-item>
       </n-message-provider>
     </n-list>
   </n-space>
@@ -63,14 +64,24 @@ const demoDataList = [
 ];
 
 const demoHotDataList = [
-  createHotData(1, "软件工程课程攻略", "关于软件过程课程的一些经验分享和资源总结", "/resource/class/01"),
-  createHotData(2, "离散数学课程资源", "关于计算机学院离散数学课程的资源分享", "/resource/class/08"),
+  createHotData(
+    1,
+    "软件工程课程攻略",
+    "关于软件过程课程的一些经验分享和资源总结",
+    "/resource/class/01"
+  ),
+  createHotData(
+    2,
+    "离散数学课程资源",
+    "关于计算机学院离散数学课程的资源分享",
+    "/resource/class/08"
+  ),
   createHotData(3, "软件杯竞赛经验分享--xxx", "", "/resource/078"),
   createHotData(4, "计科专业wiki", "", "/resource/wiki/125"),
 ];
 
 const listItemClickEvent = () => {
-  alert("Now our project is a dev version, The Resource cant read.")
+  alert("Now our project is a dev version, The Resource cant read.");
 };
 </script>
 
