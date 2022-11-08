@@ -1,7 +1,7 @@
 <template>
   <nav class="flex flex-col">
-    <div class="h-20 flex gap-3 p-5 items-center bg-gray">
-      <h1 class="first-letter:text-blue text-white font-bold text-3xl">
+    <div class="h-20 flex gap-3 p-5 items-center bg-primary">
+      <h1 class="first-letter:text-secondary text-onPrimary font-bold text-3xl">
         Akashic
       </h1>
       <div>
@@ -38,7 +38,7 @@
       </div>
       <n-button class="hidden md:block">高级搜索</n-button>
       <RouterLink
-        class="text-white p-2 hidden md:block"
+        class="text-onPrimary p-2 hidden md:block"
         v-for="link in links"
         :to="link.to"
         :key="link.label"
@@ -62,10 +62,12 @@
       </n-button>
     </div>
     <n-menu
-      :class="`bg-gray md:hidden ${state.showMobileMenu ? '' : 'h-0'}`"
+      :class="`bg-secondary transition-all md:hidden ${
+        state.showMobileMenu ? '' : 'h-0'
+      }`"
       mode="vertical"
       :options="getMobileMenuOptions(systemState.$state.isLogin)"
-      @select="handleSelect"
+      @update:value="handleSelect"
     />
   </nav>
 </template>
@@ -132,6 +134,7 @@ const getMobileMenuOptions = (isLogin: boolean): MenuOption[] =>
   (
     [
       {
+        key: "user",
         label: MenuUserOption,
         children: [
           isLogin
