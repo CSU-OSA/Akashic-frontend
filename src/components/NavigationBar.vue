@@ -7,7 +7,7 @@
       <n-input-group>
         <n-auto-complete
           :value="searchState.$state.searchString"
-          :on-update:value="(val: string) => searchState.search(val)"
+          :on-update:value="(val:string) => searchState.search(val)"
           :options="searchState.$state.autoCompleteOptions"
         >
           <template
@@ -50,10 +50,18 @@
     >
       <n-avatar class="ml-auto shrink-0" :src="logo" />
     </n-dropdown>
+    <n-button> </n-button>
   </nav>
 </template>
 <script setup lang="tsx">
 import type { DropdownOption } from "naive-ui";
+import {
+  NButton,
+  NDropdown,
+  NAutoComplete,
+  NInputGroup,
+  NInput,
+} from "naive-ui";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import { useSearchStore } from "@/stores/searchStore";
 import { SearchSharp } from "@vicons/ionicons5";
@@ -87,11 +95,16 @@ const handleSelect: OnSelect = (key) => {
   }
 };
 
-const getMenuOptions = (isLogin: boolean): (DropdownOption | null)[] =>
-  [
-    isLogin ? { key: "user", type: "render", render: MenuUserOption } : null,
-    isLogin
-      ? { label: "登出", key: "logout" }
-      : { label: "登入", key: "login" },
-  ].filter((option) => option !== null);
+const isOptionValid = (opt: DropdownOption | null): opt is DropdownOption =>
+  opt !== null;
+
+const getMenuOptions = (isLogin: boolean) =>
+  (
+    [
+      isLogin ? { key: "user", type: "render", render: MenuUserOption } : null,
+      isLogin
+        ? { label: "登出", key: "logout" }
+        : { label: "登入", key: "login" },
+    ] as (DropdownOption | null)[]
+  ).filter(isOptionValid);
 </script>
