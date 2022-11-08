@@ -23,6 +23,7 @@ html, body {
 .app-layout > header {
     grid-column: 1 / span 3;
     grid-row: 1;
+    height: 100%;
 }
 
 .app-layout > main {
