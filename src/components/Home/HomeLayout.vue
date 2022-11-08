@@ -20,6 +20,7 @@ import UserComponent from "./UserComponent.vue"
 .home {
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
 .left,
