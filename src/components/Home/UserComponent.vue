@@ -9,12 +9,14 @@
     <n-space vertical>
       <n-space justify="space-between">
         <n-h4>Recent Resource</n-h4>
-        <n-button type="success" text-color="black" class="lg:block"> Add </n-button>
+        <n-button type="success" text-color="black" class="lg:block" @click="AddBtnClickEvent">
+          Add
+        </n-button>
       </n-space>
-      <n-input placeholder="Find a Resource" size="large"></n-input>
+      <n-input placeholder="Find a Resource" size="large" @input="searchInputChange"></n-input>
 
       <n-list hoverable clickable>
-        <n-list-item v-for="item in UserResourceDataDemos" :key="item.id" @click="clickEvent">
+        <n-list-item v-for="item in resourceList()" :key="item.id" @click="clickEvent">
           <n-thing>
             <template #avatar>
               <n-avatar round size="small">
@@ -44,7 +46,13 @@
 
 <script setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
-import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
+import { CodeSlash, DocumentTextOutline, EarthSharp } from "@vicons/ionicons5";
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+
+const router = useRouter()
+const searchVal = ref('')
+
 const NewUserResourceData = (
   args: IResource
 ) => {
@@ -70,8 +78,30 @@ const iconType = (data: IResource) => {
   }
 }
 
-const clickEvent = () => {
+const AddBtnClickEvent = (e: MouseEvent) => {
+  e.preventDefault()
+  router.push('/upload')
+}
+
+const clickEvent = (e: MouseEvent) => {
+  e.preventDefault()
   alert("Now our project is a dev version, The Resource cant read.")
+}
+
+const searchInputChange = (v: string) => {
+  searchVal.value = v
+  //console.log(searchVal.value)
+}
+
+const resourceList = () => {
+  if(searchVal.value === '') {
+    return UserResourceDataDemos
+  }
+  return UserResourceDataDemos.filter(item => {
+    if(item.title.search(searchVal.value) !== -1) {
+      return item
+    }
+  })
 }
 </script>
 

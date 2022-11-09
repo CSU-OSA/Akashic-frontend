@@ -8,14 +8,15 @@
   <n-space vertical>
     <n-h4>* Some interesting things you may be like👍:</n-h4>
     <div>
-      <template v-for="item in demoDataList" :key="item.id">
-        <MiddleContentItem :id="item.id"
-                           :title="item.title"
-                           :description="item.description"
-                           :type="item.type"
-                           :url="item.url" />
-
-      </template>
+      <n-list hoverable clickable>
+        <n-list-item v-for="item in demoDataList" :key="item.id">
+          <MiddleContentItem :id="item.id"
+                             :title="item.title"
+                             :description="item.description"
+                             :type="item.type"
+                             :url="item.url" />
+        </n-list-item>
+      </n-list>
     </div>
   </n-space>
 

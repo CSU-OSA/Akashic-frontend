@@ -56,8 +56,9 @@ const iconType = computed(() => {
   }
 })
 
-const clickEvent = () => {
+const clickEvent = (e: MouseEvent) => {
   // router TODO code here
+  e.preventDefault()
   alert("Now our project is a dev version, The Resource cant read.")
 }
 </script>
