@@ -1,11 +1,12 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import naive from "naive-ui";
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 import casdoor from "casdoor-vue-sdk";
-
+import VueMarkdownIt from "vue3-markdown-it";
 import App from "./App.vue";
 import router from "./router";
-
 import "./style/style.css";
 
 const config = {
@@ -21,6 +22,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(naive);
+app.use(VueMarkdownIt);
 app.use(casdoor,config);
 
 app.mount("#app");
