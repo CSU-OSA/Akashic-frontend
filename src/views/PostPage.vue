@@ -35,6 +35,10 @@ import DownloadArea from "@/components/PostPage/downloadArea.vue";
   width: 70%;
   padding: 30px;
 }
+.mdParser {
+  min-height: 400px;
+}
+
 .postpage {
   display: flex;
   justify-content: space-between;
