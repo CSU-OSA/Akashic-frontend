@@ -5,12 +5,11 @@
       <n-h4>User NickName</n-h4>
     </n-space>
 
-    <n-divider />
-
-    <n-space>
-      <n-space>
+    <n-hr class="mt-0.5"/>
+    <n-space vertical>
+      <n-space justify="space-between">
         <n-h4>Recent Resource</n-h4>
-        <n-button type="success" text-color="black">Add</n-button>
+        <n-button type="success" text-color="black" class="lg:block"> Add </n-button>
       </n-space>
       <n-input placeholder="Find a Resource" size="large"></n-input>
 
@@ -29,7 +28,8 @@
         </n-list-item>
       </n-list>
     </n-space>
-    <n-divider />
+
+    <n-hr class="mt-0.5"/>
 
     <n-space vertical>
       <n-h4>Recent Tags</n-h4>
