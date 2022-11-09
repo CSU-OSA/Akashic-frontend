@@ -1,14 +1,10 @@
 <template>
-  <nav
-    :class="`grid grid-cols-1 ${
-      state.showMobileMenu ? 'grid-rows-2' : 'grid-rows-1'
-    }`"
-  >
-    <div class="row-1 flex gap-3 p-5 items-center bg-gray">
-      <h1 class="first-letter:text-blue text-white font-bold text-3xl">
+  <nav class="flex flex-col">
+    <div class="h-20 flex gap-3 p-5 items-center bg-primary">
+      <h1 class="first-letter:text-secondary text-onPrimary font-bold text-3xl">
         Akashic
       </h1>
-      <div class="w-72">
+      <div>
         <n-input-group>
           <n-auto-complete
             :value="searchState.$state.searchString"
@@ -42,7 +38,7 @@
       </div>
       <n-button class="hidden md:block">高级搜索</n-button>
       <RouterLink
-        class="text-white p-2 hidden md:block"
+        class="text-onPrimary p-2 hidden md:block"
         v-for="link in links"
         :to="link.to"
         :key="link.label"
@@ -52,28 +48,41 @@
         trigger="click"
         :options="getMenuOptions(systemState.$state.isLogin)"
         @select="handleSelect"
+        class="hidden md:block"
       >
         <n-avatar class="ml-auto shrink-0 hidden md:block" :src="logo" />
       </n-dropdown>
       <n-button
         class="ml-auto shrink-0 md:hidden"
         @click="() => (state.showMobileMenu = !state.showMobileMenu)"
-      ></n-button>
+      >
+        <n-icon>
+          <Menu></Menu>
+        </n-icon>
+      </n-button>
     </div>
-    <div :class="`bg-gray row-2 ${state.showMobileMenu ? '' : 'h-0'}`">
-      funk you
-    </div>
+    <n-menu
+      :class="`bg-secondary transition-all md:hidden ${
+        state.showMobileMenu ? '' : 'h-0'
+      }`"
+      mode="vertical"
+      :options="getMobileMenuOptions(systemState.$state.isLogin)"
+      @update:value="handleSelect"
+    />
   </nav>
 </template>
 <script setup lang="tsx">
-import type { DropdownOption } from "naive-ui";
+import type { DropdownOption, MenuOption } from "naive-ui";
 import {
   NButton,
   NDropdown,
   NAutoComplete,
   NInputGroup,
   NInput,
+  NMenu,
+  NIcon,
 } from "naive-ui";
+import { Menu } from "@vicons/ionicons5";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import { useSearchStore } from "@/stores/searchStore";
 import { SearchSharp } from "@vicons/ionicons5";
@@ -90,7 +99,7 @@ const state = reactive({ showMobileMenu: false });
 const user = systemState.$state.user;
 
 const MenuUserOption = () => (
-  <div class="w-52 flex gap-5 items-center cursor-pointer p-2 border-gray border-b mb-2">
+  <div class="flex gap-5 items-center cursor-pointer">
     <n-avatar src={user?.avatar || logo}></n-avatar>
     <p>{user?.nickName || "guest"}</p>
   </div>
@@ -115,10 +124,28 @@ const isOptionValid = (opt: DropdownOption | null): opt is DropdownOption =>
 const getMenuOptions = (isLogin: boolean) =>
   (
     [
-      isLogin ? { key: "user", type: "render", render: MenuUserOption } : null,
       isLogin
         ? { label: "登出", key: "logout" }
         : { label: "登入", key: "login" },
     ] as (DropdownOption | null)[]
+  ).filter(isOptionValid);
+
+const getMobileMenuOptions = (isLogin: boolean): MenuOption[] =>
+  (
+    [
+      {
+        key: "user",
+        label: MenuUserOption,
+        children: [
+          isLogin
+            ? { label: "登出", key: "logout" }
+            : { label: "登入", key: "login" },
+        ],
+      },
+      ...links.map((link) => ({
+        key: link.label,
+        label: () => <RouterLink to={link.to}>{link.label}</RouterLink>,
+      })),
+    ] as (MenuOption | null)[]
   ).filter(isOptionValid);
 </script>
