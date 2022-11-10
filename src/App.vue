@@ -26,11 +26,18 @@ const themeOverrides: GlobalThemeOverrides = {
     textColorBase: theme.onPrimary,
     bodyColor: theme.primary,
     borderColor: theme.primaryContainer,
-    hoverColor: theme.onPrimary,
   },
   Button: {
-    colorHover: theme.onPrimary,
-    textColor: theme.onPrimary,
+    colorHover: theme.secondary,
+    textColor: theme.onSecondary,
+    textColorHover: theme.onSecondary,
+    borderHover: theme.secondaryContainer
   },
+  Input: {
+    colorFocus: theme.background,
+    borderFocus: theme.onBackground,
+    textColor: theme.onBackground,
+    borderHover: theme.onBackground
+  }
 };
 </script>
