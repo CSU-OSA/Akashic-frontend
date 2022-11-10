@@ -1,21 +1,25 @@
 <template>
-  <div
-    class="flex-grow flex flex-col justify-start items-center mt-10 pl-0 md:pl-28 pr-0 md:pr-28 max-w-screen-xl"
-  >
-    <div class="w-full hidden md:block pc-navBar">
-      <div class="hidden md:block pc-navBar-avatarPart"></div>
-      <NavigationBar
-        ref="$tabBarRefPC"
-        :position="tabBarPosition"
-        :value-update-handler="tabChangeHandler_PC"
-        class="hidden md:block"
-        style="position: sticky"
-        :post-count="postList.length"
-        :repo-count="repoList.length"
-        :star-count="starList.length"
-      />
+  <div class="flex-grow flex flex-col justify-start items-center">
+    <div
+      class="w-full flex justify-center items-center mt-10 hidden md:flex pc-navBar"
+    >
+      <div
+        class="w-full pl-0 md:pl-28 pr-0 md:pr-28 max-w-screen-xl pc-navBar-inner"
+      >
+        <div class="hidden md:block pc-navBar-avatarPart"></div>
+        <NavigationBar
+          ref="$tabBarRefPC"
+          :position="tabBarPosition"
+          :value-update-handler="tabChangeHandler_PC"
+          class="hidden md:block"
+          style="position: sticky"
+          :post-count="postList.length"
+          :repo-count="repoList.length"
+          :star-count="starList.length"
+        />
+      </div>
     </div>
-    <div class="w-full contentDiv">
+    <div class="w-full contentDiv pl-0 md:pl-28 pr-0 md:pr-28 max-w-screen-xl">
       <BasicInfoBar />
       <div class="w-full flex flex-col">
         <NavigationBar
@@ -96,6 +100,9 @@ const tabViewDiv = () => {
   border-bottom: none;
 }
 
+.pc-navBar-inner {
+}
+
 .pc-navBar-avatarPart {
   width: 300px;
 }
@@ -114,17 +121,21 @@ const tabViewDiv = () => {
 
 @media (min-width: 768px) {
   .pc-navBar {
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .pc-navBar-inner {
     display: grid;
     grid-template-columns: 300px auto;
     grid-auto-flow: column;
     gap: 0.5rem;
-    border-bottom: 2px solid #e0e0e0;
   }
 
   .contentDiv {
     display: grid;
     grid-template-columns: 300px auto;
     grid-template-rows: auto;
+    gap: 0.5rem;
   }
 
   .m-navBar {
