@@ -1,8 +1,11 @@
 <template>
   <n-space vertical>
     <n-space>
-      <n-avatar round size="small"/>
-      <n-h4>User NickName</n-h4>
+      <n-avatar :bordered="true" round size="small" :src="user?.avatar || logo"/>
+      <!-- TODO 之后将router to改为个人主页界面的 -->
+      <router-link to="/upload">
+        <a id="nick" title="前往个人主页">{{ user?.nickName || "guest"}}</a>
+      </router-link>
     </n-space>
 
     <n-hr class="mt-0.5"/>
@@ -36,9 +39,9 @@
     <n-space vertical>
       <n-h4>Recent Tags</n-h4>
       <n-space>
-        <n-tag type="success">SE</n-tag>
-        <n-tag type="info">Golang</n-tag>
-        <n-tag type="warning">Java</n-tag>
+        <template v-for="tag in UserTagsDataDemos" :key="tag.id">
+          <n-tag :type="tag.display">{{tag.label}}</n-tag>
+        </template>
       </n-space>
     </n-space>
   </n-space>
@@ -49,22 +52,20 @@ import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, DocumentTextOutline, EarthSharp } from "@vicons/ionicons5";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { useSystemStateStore } from "@/stores/systemStateStore";
+import logo from "@/assets/logo.png";
+import { useUserSelfResource, useUserTags } from "@/api/Home/HomeData";
 
 const router = useRouter()
+const systemStore = useSystemStateStore()
 const searchVal = ref('')
 
-const NewUserResourceData = (
-  args: IResource
-) => {
-  return args
-}
+const user = systemStore.$state.user
 
-const UserResourceDataDemos = [
-  NewUserResourceData({id: 1, title: '软件工程专业wiki', description: '', type: 'wiki', url: '/wiki/xxxx'}),
-  NewUserResourceData({id: 2, title: 'JPetStore-SpringBoot Code', description: '', type: 'code', url: '/code/xxx'}),
-  NewUserResourceData({id: 3, title: 'Java语言设计课程资源', description: '', type: 'text', url: '/text/java'}),
-  NewUserResourceData({id: 4, title: '软件创新大赛萌新攻略', description: '', type: 'text', url: '/text/sss'})
-]
+// 从api中调用函数获取用户自己的资源列表
+const UserResourceDataDemos = useUserSelfResource()
+
+const UserTagsDataDemos = useUserTags()
 
 const iconType = (data: IResource) => {
   if(data.type === 'code') {
@@ -88,6 +89,13 @@ const clickEvent = (e: MouseEvent) => {
   alert("Now our project is a dev version, The Resource cant read.")
 }
 
+// const nickClickEvent = (e: MouseEvent) => {
+//   e.preventDefault()
+//   alert('前往个人主页')
+//   // 应该跳往个人主页,之后将path更改成个人主页的url
+//   router.push('/upload')
+// }
+
 const searchInputChange = (v: string) => {
   searchVal.value = v
   //console.log(searchVal.value)
@@ -105,4 +113,13 @@ const resourceList = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#nick {
+  font-weight: bold;
+  font-size: medium;
+}
+#nick:hover {
+  text-decoration: underline;
+  color: mediumblue;
+}
+</style>

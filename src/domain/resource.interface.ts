@@ -7,3 +7,10 @@ export interface IResource {
   type: 'code' | 'wiki' | 'text'
   url: Url
 }
+
+export interface IFootPoint {
+  id: number,
+  content: string,
+  time: string,
+  url: Url
+}
