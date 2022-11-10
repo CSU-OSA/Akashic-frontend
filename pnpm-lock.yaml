@@ -18,6 +18,7 @@ specifiers:
   casdoor-vue-sdk: ^1.2.3
   eslint: ^8.22.0
   eslint-plugin-vue: ^9.3.0
+  highlight: ^0.2.4
   jsdom: ^20.0.1
   mavon-editor: ^2.10.4
   naive-ui: ^2.33.5
@@ -40,6 +41,7 @@ specifiers:
 dependencies:
   '@types/markdown-it': registry.npmmirror.com/@types/markdown-it/12.2.3
   '@vicons/ionicons5': 0.12.0
+  highlight: registry.npmmirror.com/highlight/0.2.4
   mavon-editor: 2.10.4
   pinia: 2.0.23_lrjaoqkmph6q2hmgd3qeuy6rom
   showdown: registry.npmmirror.com/showdown/2.1.0
@@ -3728,6 +3730,13 @@ packages:
     name: highlight.js
     version: 11.6.0
     engines: {node: '>=12.0.0'}
+    dev: false
+
+  registry.npmmirror.com/highlight/0.2.4:
+    resolution: {integrity: sha512-TEcWU6BolpDYIaVD91KmaYe/kRZwOmQlLWZGO8DK+Cs555+7mawk2KUnF/dBwcLnrvlCDk/xC+BXfz7Zva+Jfg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/highlight/-/highlight-0.2.4.tgz}
+    name: highlight
+    version: 0.2.4
+    deprecated: Not maintained anymore
     dev: false
 
   registry.npmmirror.com/inflight/1.0.6:
