@@ -48,16 +48,14 @@ const demoTimeDataList = useUserFootPoint()
 const demoHotDataList = useHotResource()
 
 const iconType = (data: IResource) => {
-  if(data.type === 'code') {
-    return CodeSlash
+  if (data.type === "code") {
+    return CodeSlash;
+  } else if (data.type === "wiki") {
+    return EarthSharp;
+  } else {
+    return DocumentTextOutline;
   }
-  else if(data.type === 'wiki') {
-    return EarthSharp
-  }
-  else {
-    return DocumentTextOutline
-  }
-}
+};
 
 const listItemClickEvent = () => {
   alert("Now our project is a dev version, The Resource cant read.");

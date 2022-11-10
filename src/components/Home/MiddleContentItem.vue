@@ -1,13 +1,13 @@
 <template>
-  <n-card :hoverable="true"
-          header-style="font-weight:bold"
-          @click="clickEvent"
-          :size="cardType"
+  <n-card
+    :hoverable="true"
+    header-style="font-weight:bold"
+    @click="clickEvent"
+    :size="cardType"
   >
     <template #header>
       <n-avatar round size="small">
-        <n-icon :component="iconType">
-        </n-icon>
+        <n-icon :component="iconType"> </n-icon>
       </n-avatar>
       {{ props.prop.title }}
     </template>
@@ -55,6 +55,4 @@ const clickEvent = (e: MouseEvent) => {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

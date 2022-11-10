@@ -1,7 +1,9 @@
 <template>
   <n-space>
     <n-h1 class="font-semibold">The home for all CSUers —— including you.</n-h1>
-    <p>Welcome to Akashic.This is a good place for you to find what you want.</p>
+    <p>
+      Welcome to Akashic.This is a good place for you to find what you want.
+    </p>
   </n-space>
   <n-divider />
 
@@ -17,7 +19,6 @@
       </n-list>
     </div>
   </n-space>
-
 </template>
 
 <script setup lang="ts">

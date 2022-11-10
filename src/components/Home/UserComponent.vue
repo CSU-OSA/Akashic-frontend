@@ -68,16 +68,14 @@ const UserResourceDataDemos = useUserSelfResource()
 const UserTagsDataDemos = useUserTags()
 
 const iconType = (data: IResource) => {
-  if(data.type === 'code') {
-    return CodeSlash
+  if (data.type === "code") {
+    return CodeSlash;
+  } else if (data.type === "wiki") {
+    return EarthSharp;
+  } else {
+    return DocumentTextOutline;
   }
-  else if(data.type === 'wiki') {
-    return EarthSharp
-  }
-  else {
-    return DocumentTextOutline
-  }
-}
+};
 
 const AddBtnClickEvent = (e: MouseEvent) => {
   e.preventDefault()

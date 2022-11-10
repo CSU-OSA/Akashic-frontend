@@ -17,7 +17,7 @@ import { ref } from "vue";
 import { RouterView } from "vue-router";
 import NavigationBar from "./components/NavigationBar.vue";
 import type { GlobalThemeOverrides, NConfigProvider } from "naive-ui";
-import theme from "$/theme/material.json";
+import theme from "$/themes";
 
 const appLayout = ref<InstanceType<typeof NConfigProvider> | null>(null);
 
@@ -25,11 +25,12 @@ const themeOverrides: GlobalThemeOverrides = {
   common: {
     textColorBase: theme.onPrimary,
     bodyColor: theme.primary,
-    borderColor: theme.onPrimary,
+    borderColor: theme.primaryContainer,
     hoverColor: theme.onPrimary,
   },
   Button: {
     colorHover: theme.onPrimary,
+    textColor: theme.onPrimary,
   },
 };
 </script>
