@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    <div class="left">
+  <div id="home" class="md:flex">
+    <div id="left" class="block md:block md:w-2/5">
       <UserComponent />
     </div>
-    <div class="middle">
+    <div id="middle" class="block md:block">
       <MiddleContent />
     </div>
-    <div class="right">
+    <div id="right" class="hidden md:block md:w-2/5">
       <RightComponent />
     </div>
   </div>
@@ -19,31 +19,28 @@ import MiddleContent from "./MiddleContent.vue";
 </script>
 
 <style scoped>
-.home {
-  display: flex;
+#home {
   justify-content: space-between;
   height: 100%;
 }
 
-.left,
-.middle,
-.right {
-  height: 100%;
+#left,
+#middle,
+#right {
+  height: auto;
 }
 
-.left {
-  width: 550px;
+#left {
   background: rgb(253, 254, 254);
-  padding: 35px;
+  padding: 30px;
 }
 
-.right {
-  width: 600px;
+#right {
   background: rgb(242, 243, 244);
   padding: 20px;
 }
 
-.middle {
+#middle {
   background: rgb(242, 243, 244);
   width: 100%;
   margin: 0 0;

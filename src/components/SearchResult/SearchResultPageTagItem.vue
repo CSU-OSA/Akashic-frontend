@@ -12,17 +12,9 @@
 import type { ISearchTag } from "@/domain/searchResult.interface";
 import type { Ref } from "vue";
 import SearchResultPageTagItem from "@/components/SearchResult/SearchResultPageTagItem.vue";
+import type { TagStatus } from "@/domain/searchResult.type";
 
 import { ArrowBackIosNewRound } from "@vicons/material";
-
-interface TagStatus {
-  display: string;
-  label: string;
-  selected: boolean;
-  partlySelected: boolean;
-  parentTag: string;
-  subTags: string[];
-}
 
 const props = defineProps<{
   tag: ISearchTag;

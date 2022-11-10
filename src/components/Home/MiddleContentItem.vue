@@ -9,34 +9,26 @@
         <n-icon :component="iconType">
         </n-icon>
       </n-avatar>
-      {{ props.title }}
+      {{ props.prop.title }}
     </template>
     <template #default>
-      {{ props.description }}
+      {{ props.prop.description }}
     </template>
   </n-card>
 </template>
 
 <script setup lang="ts">
-import type { Url } from "@/domain/base.type";
-import { computed } from "vue";
+import { computed } from "vue"
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
+import type { IResource } from "@/domain/resource.interface"
 
-interface ICardContent {
-  id: number,
-  title: string,
-  description: string,
-  type: string | number | null,
-  url: Url
-}
-
-const props = defineProps<ICardContent>()
+const props = defineProps<{prop: IResource}>()
 
 const cardType = computed(() => {
-  if(props.type === 'code') {
+  if(props.prop.type === 'code') {
     return 'large'
   }
-  else if(props.type === 'wiki') {
+  else if(props.prop.type === 'wiki') {
     return 'huge'
   }
   else {
@@ -45,10 +37,10 @@ const cardType = computed(() => {
 })
 
 const iconType = computed(() => {
-  if(props.type === 'code') {
+  if(props.prop.type === 'code') {
     return CodeSlash
   }
-  else if(props.type === 'wiki') {
+  else if(props.prop.type === 'wiki') {
     return EarthSharp
   }
   else {
@@ -56,8 +48,9 @@ const iconType = computed(() => {
   }
 })
 
-const clickEvent = () => {
+const clickEvent = (e: MouseEvent) => {
   // router TODO code here
+  e.preventDefault()
   alert("Now our project is a dev version, The Resource cant read.")
 }
 </script>

@@ -3,7 +3,7 @@
     <n-h4>Latest FootPoint🚶‍</n-h4>
     <n-timeline>
       <n-timeline-item
-        v-for="item in demoDataList"
+        v-for="item in demoTimeDataList"
         :key="item.id"
         type="info"
         :content="item.content"
@@ -40,37 +40,12 @@
 <script setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
+import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
 
 
-// demo死数据
-const createDemoTimeData = (id: number, content: string, time: string) => {
-  return {
-    id,
-    content,
-    time,
-  };
-};
+const demoTimeDataList = useUserFootPoint()
 
-// demo死数据
-const createHotData = (
-  args : IResource
-) => {
-  return args
-};
-const demoDataList = [
-  createDemoTimeData(1, "浏览了xxxx", "10 minutes ago"),
-  createDemoTimeData(2, "访问了xxx", "5 hours ago"),
-  createDemoTimeData(3, "修改了xxxx", "2 days ago"),
-  createDemoTimeData(4, "上传了xxxx", "2 weeks ago"),
-  createDemoTimeData(5, "参与贡献了xxx wiki", "1 months ago"),
-];
-
-const demoHotDataList = [
-  createHotData({id: 1, title: '软件工程专业wiki', description: '这里是软件工程专业的wiki, 正在不断维护中', type: 'wiki', url:'/wiki/xxx'}),
-  createHotData({id: 2, title: '离散数学课程资源', description: '计算机学院离散数学课程相关资源以及学习方法总结', type: 'text', url:'/text/xxxx'}),
-  createHotData({id: 3, title: '软件杯竞赛经验分享--xxx', description: '来着xxx的软件杯竞赛经验分享', type: 'text', url:'/text/xxxxx'}),
-  createHotData({id: 4, title: '计科专业wiki', description: '这里是计科专业的wiki，正在不断维护中', type:'wiki', url: '/url/xxxxxxxx'}),
-];
+const demoHotDataList = useHotResource()
 
 const iconType = (data: IResource) => {
   if(data.type === 'code') {

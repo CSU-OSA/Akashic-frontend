@@ -37,7 +37,7 @@ import { isPost, isRepo } from "@/domain/searchResult.interface";
 import SearchResultPostItem from "@/components/SearchResult/SearchResultPostItem.vue";
 import SearchResultRepositoryItem from "@/components/SearchResult/SearchResultRepositoryItem.vue";
 import SearchResultWikiItem from "@/components/SearchResult/SearchResultWikiItem.vue";
-import type TagStatus from "@/components/SearchResult/SearchResultPageTagItem.vue";
+import type { TagStatus } from "@/domain/searchResult.type";
 import SearchResultPageTagItem from "@/components/SearchResult/SearchResultPageTagItem.vue";
 import type { Ref } from "vue";
 import { ref } from "vue";
