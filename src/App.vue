@@ -2,36 +2,48 @@
   <n-config-provider
     ref="appLayout"
     class="app-layout"
-    :theme-overrides="themeOverrides"
+    :theme-overrides="layoutTheme"
   >
-    <header>
-      <NavigationBar />
-    </header>
-    <main>
-      <Suspense>
-        <RouterView />
-      </Suspense>
-    </main>
+    <n-message-provider>
+      <header>
+        <NavigationBar />
+      </header>
+      <main>
+        <n-config-provider
+          class="w-full h-full"
+          :theme-overrides="contentTheme"
+        >
+          <Suspense>
+            <RouterView />
+          </Suspense>
+        </n-config-provider>
+      </main>
+    </n-message-provider>
   </n-config-provider>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouterView } from "vue-router";
 import NavigationBar from "./components/NavigationBar.vue";
-import type { GlobalThemeOverrides, NConfigProvider } from "naive-ui";
+import type {
+  GlobalThemeOverrides,
+  NConfigProvider,
+  NMessageProvider,
+} from "naive-ui";
 import theme from "$/themes";
 
 const appLayout = ref<InstanceType<typeof NConfigProvider> | null>(null);
 
-const themeOverrides: GlobalThemeOverrides = {
+const layoutTheme: GlobalThemeOverrides = {
   common: {
     textColorBase: theme.onPrimary,
     bodyColor: theme.primary,
     borderColor: theme.primaryContainer,
   },
   Button: {
+    color: theme.primary,
+    textColor: theme.onPrimary,
     colorHover: theme.secondary,
-    textColor: theme.onSecondary,
     textColorHover: theme.onSecondary,
     borderHover: theme.secondaryContainer,
   },
@@ -40,6 +52,24 @@ const themeOverrides: GlobalThemeOverrides = {
     borderFocus: theme.onBackground,
     textColor: theme.onBackground,
     borderHover: theme.onBackground,
+  },
+};
+
+const contentTheme: GlobalThemeOverrides = {
+  common: {
+    errorColor: theme.error,
+    primaryColor: theme.primary,
+    infoColor: theme.secondary,
+  },
+  Button: {
+    textColor: theme.onBackground,
+    colorHover: theme.primary,
+    textColorHover: theme.onPrimary,
+    borderHover: theme.primaryContainer,
+  },
+  Card: {
+    colorEmbedded: theme.background,
+    textColor: theme.onBackground,
   },
 };
 </script>
