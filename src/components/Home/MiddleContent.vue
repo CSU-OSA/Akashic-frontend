@@ -12,9 +12,7 @@
     <div>
       <n-list hoverable clickable>
         <n-list-item v-for="item in demoDataList" :key="item.id">
-
           <MiddleContentItem :prop="item" />
-
         </n-list-item>
       </n-list>
     </div>
@@ -25,8 +23,7 @@
 import MiddleContentItem from "./MiddleContentItem.vue";
 import { useRecommendResource } from "@/api/Home/HomeData";
 
-const demoDataList = useRecommendResource()
-
+const demoDataList = useRecommendResource();
 </script>
 
 <style scoped></style>

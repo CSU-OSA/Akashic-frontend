@@ -1,4 +1,5 @@
 import type { ISystemState } from "@/domain/systemState.interface";
+import type { IUser } from "@/domain/user.interface";
 import { defineStore } from "pinia";
 
 const initState = (): ISystemState => ({
@@ -11,11 +12,14 @@ const initState = (): ISystemState => ({
 export const useSystemStateStore = defineStore("system_state", {
   state: initState,
   actions: {
-    login() {
-      this.isLogin = true;
+    setLogin(isLogin: boolean) {
+      this.isLogin = isLogin;
+      if (!isLogin) {
+        this.user = null;
+      }
     },
-    logout() {
-      this.isLogin = false;
+    setUser(user: IUser) {
+      this.user = user;
     },
   },
 });

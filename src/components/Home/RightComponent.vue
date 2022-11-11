@@ -39,13 +39,12 @@
 
 <script setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
-import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5"
+import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
 
+const demoTimeDataList = useUserFootPoint();
 
-const demoTimeDataList = useUserFootPoint()
-
-const demoHotDataList = useHotResource()
+const demoHotDataList = useHotResource();
 
 const iconType = (data: IResource) => {
   if (data.type === "code") {
