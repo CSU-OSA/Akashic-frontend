@@ -1,0 +1,6 @@
+{
+    "baseURL": {
+        "casdoor": "https://auth.dev.magicalsheep.cn",
+        "api": "https://api.dev.magicalsheep.cn"
+    }
+}

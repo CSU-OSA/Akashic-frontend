@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { AxiosResponse } from "axios";
+import config from "$/services";
 
 export class RestFul {
   requester;
@@ -32,3 +33,8 @@ export class RestFul {
   async put() {}
   async delete() {}
 }
+
+const casdoorService = new RestFul(config.baseURL.casdoor);
+const akashicService = new RestFul(config.baseURL.api);
+
+export { casdoorService, akashicService };

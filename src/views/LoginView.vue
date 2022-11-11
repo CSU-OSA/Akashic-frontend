@@ -2,8 +2,10 @@
   <p>something wrong...</p>
 </template>
 <script lang="ts">
+import type { IUser } from "@/domain/user.interface";
 import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import jwt_decode from "jwt-decode";
 import { useCasdoor } from "casdoor-vue-sdk";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import { login } from "@/api/user";
@@ -22,7 +24,9 @@ export default defineComponent({
       }
 
       const { accessToken } = await login(code as string);
+      const user = jwt_decode(accessToken) as IUser;
       system.login(accessToken, state as string);
+      system.setUser(user);
       router.push("/");
     } else {
       window.location.href = getSigninUrl();

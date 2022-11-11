@@ -3,9 +3,9 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import { logout } from "@/api/auth";
+import { logout } from "@/api/user";
 
 export default defineComponent({
   async setup() {
