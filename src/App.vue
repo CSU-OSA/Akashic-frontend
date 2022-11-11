@@ -8,7 +8,9 @@
       <NavigationBar />
     </header>
     <main>
-      <RouterView />
+      <Suspense>
+        <RouterView />
+      </Suspense>
     </main>
   </n-config-provider>
 </template>
@@ -31,13 +33,13 @@ const themeOverrides: GlobalThemeOverrides = {
     colorHover: theme.secondary,
     textColor: theme.onSecondary,
     textColorHover: theme.onSecondary,
-    borderHover: theme.secondaryContainer
+    borderHover: theme.secondaryContainer,
   },
   Input: {
     colorFocus: theme.background,
     borderFocus: theme.onBackground,
     textColor: theme.onBackground,
-    borderHover: theme.onBackground
-  }
+    borderHover: theme.onBackground,
+  },
 };
 </script>

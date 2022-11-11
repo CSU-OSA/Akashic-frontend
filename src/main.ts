@@ -10,10 +10,10 @@ import "./style/style.css";
 
 const config = {
   serverUrl: "https://auth.dev.magicalsheep.cn",
-  clientId: "e653e70adca839906ae3",
+  clientId: "31552fe8187459739ac9",
   organizationName: "csu-osa",
   appName: "akashic",
-  redirectPath: "/callback",
+  redirectPath: "/login/success",
 };
 
 const app = createApp(App);

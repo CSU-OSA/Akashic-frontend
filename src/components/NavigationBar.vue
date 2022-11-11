@@ -1,9 +1,7 @@
 <template>
   <nav class="flex flex-col">
     <div class="h-20 flex gap-3 p-5 items-center bg-primary text-onPrimary">
-      <h1 class="text-onPrimary font-bold text-3xl">
-        Akashic
-      </h1>
+      <h1 class="text-onPrimary font-bold text-3xl">Akashic</h1>
       <div>
         <n-input-group>
           <n-auto-complete
@@ -50,7 +48,10 @@
         @select="handleSelect"
         class="hidden md:block"
       >
-        <n-avatar class="ml-auto shrink-0 hidden md:block" :src="logo" />
+        <n-avatar
+          class="ml-auto shrink-0 hidden md:block"
+          :src="systemState.$state.user?.avatar || logo"
+        />
       </n-dropdown>
       <n-button
         class="ml-auto shrink-0 md:hidden"
@@ -66,7 +67,7 @@
         state.showMobileMenu ? '' : 'hidden'
       }`"
       mode="vertical"
-      :options="getMobileMenuOptions(systemState.$state.isLogin)"
+      :options="getMobileMenuOptions(systemState.$state.isLogin,systemState.$state.user?.avatar,systemState.$state.user?.nickName)"
       @update:value="handleSelect"
     />
   </nav>
@@ -91,27 +92,29 @@ import type { OnSelect } from "naive-ui/es/auto-complete/src/interface";
 import links from "$/links.json";
 import { RouterLink } from "vue-router";
 import { reactive } from "vue";
+import { useCasdoor } from "casdoor-vue-sdk";
 
+const { getSigninUrl } = useCasdoor();
 const systemState = useSystemStateStore();
 const searchState = useSearchStore();
 const state = reactive({ showMobileMenu: false });
 
 const user = systemState.$state.user;
 
-const MenuUserOption = () => (
+const MenuUserOption = (avatar?:string, nickName?:string) => (
   <div class="flex gap-5 items-center cursor-pointer">
-    <n-avatar src={user?.avatar || logo}></n-avatar>
-    <p>{user?.nickName || "guest"}</p>
+    <n-avatar src={avatar || logo}></n-avatar>
+    <p>{nickName || "未登入"}</p>
   </div>
 );
 
 const handleSelect: OnSelect = (key) => {
   switch (key) {
     case "login":
-      systemState.login();
+      window.location.href = getSigninUrl();
       break;
     case "logout":
-      systemState.logout();
+      systemState.setLogin(false);
       break;
     default:
       break;
@@ -130,12 +133,12 @@ const getMenuOptions = (isLogin: boolean) =>
     ] as (DropdownOption | null)[]
   ).filter(isOptionValid);
 
-const getMobileMenuOptions = (isLogin: boolean): MenuOption[] =>
+const getMobileMenuOptions = (isLogin: boolean, avatar?:string, nickName?:string): MenuOption[] =>
   (
     [
       {
         key: "user",
-        label: MenuUserOption,
+        label: ()=>MenuUserOption(avatar, nickName),
         children: [
           isLogin
             ? { label: "登出", key: "logout" }
