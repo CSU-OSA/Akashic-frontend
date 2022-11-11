@@ -1,7 +1,9 @@
 <template>
   <nav class="flex flex-col">
     <div class="h-20 flex gap-3 p-5 items-center bg-primary text-onPrimary">
-      <h1 class="text-onPrimary font-bold text-3xl">Akashic</h1>
+      <RouterLink to="/" class="text-onPrimary font-bold text-3xl"
+        >Akashic</RouterLink
+      >
       <div>
         <n-input-group>
           <n-auto-complete
@@ -42,6 +44,9 @@
         :key="link.label"
         >{{ link.label }}</RouterLink
       >
+      <RouterLink class="ml-auto" to="upload">
+        <n-button>上传资源</n-button>
+      </RouterLink>
       <n-dropdown
         trigger="click"
         :options="getMenuOptions(systemState.$state.isLogin)"
@@ -49,7 +54,7 @@
         class="hidden md:block"
       >
         <n-avatar
-          class="ml-auto shrink-0 hidden md:block"
+          class="shrink-0 hidden md:block cursor-pointer"
           :src="systemState.$state.user?.avatar || logo"
         />
       </n-dropdown>
@@ -67,7 +72,13 @@
         state.showMobileMenu ? '' : 'hidden'
       }`"
       mode="vertical"
-      :options="getMobileMenuOptions(systemState.$state.isLogin,systemState.$state.user?.avatar,systemState.$state.user?.nickName)"
+      :options="
+        getMobileMenuOptions(
+          systemState.$state.isLogin,
+          systemState.$state.user?.avatar,
+          systemState.$state.user?.nickName
+        )
+      "
       @update:value="handleSelect"
     />
   </nav>
@@ -101,7 +112,7 @@ const state = reactive({ showMobileMenu: false });
 
 const user = systemState.$state.user;
 
-const MenuUserOption = (avatar?:string, nickName?:string) => (
+const MenuUserOption = (avatar?: string, nickName?: string) => (
   <div class="flex gap-5 items-center cursor-pointer">
     <n-avatar src={avatar || logo}></n-avatar>
     <p>{nickName || "未登入"}</p>
@@ -133,12 +144,16 @@ const getMenuOptions = (isLogin: boolean) =>
     ] as (DropdownOption | null)[]
   ).filter(isOptionValid);
 
-const getMobileMenuOptions = (isLogin: boolean, avatar?:string, nickName?:string): MenuOption[] =>
+const getMobileMenuOptions = (
+  isLogin: boolean,
+  avatar?: string,
+  nickName?: string
+): MenuOption[] =>
   (
     [
       {
         key: "user",
-        label: ()=>MenuUserOption(avatar, nickName),
+        label: () => MenuUserOption(avatar, nickName),
         children: [
           isLogin
             ? { label: "登出", key: "logout" }
