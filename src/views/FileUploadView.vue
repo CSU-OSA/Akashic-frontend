@@ -1,22 +1,16 @@
 <template>
-  <div class="form">
-    <n-card title="上传资源" embedded>
-      <n-form
-        ref="formRef"
-        :model="model"
-        :rules="rules"
-        label-placement="top"
-        label-width="auto"
-        require-mark-placement="right-hanging"
-        :size="size"
-        :style="{
-          minWidth: '640px',
-          maxWidth: '640px',
-        }"
-      >
-        <n-form-item label="Title" path="title">
-          <n-input v-model:value="model.title" placeholder="Input" />
-        </n-form-item>
+
+    <div class="form" style="width:640px">
+        <n-card embedded>
+
+            <n-form ref="formRef" :model="model" :rules="rules" label-placement="top" label-width="auto"
+                require-mark-placement="right-hanging" :size="size" >
+
+                <n-divider> 上传资源 </n-divider>
+
+                <n-form-item label="Title" path="title">
+                    <n-input v-model:value="model.title" placeholder="Input" />
+                </n-form-item>
 
         <n-form-item label="Description" path="description">
           <n-input
@@ -59,22 +53,36 @@
           </n-upload>
         </n-form-item>
 
-        <div style="display: flex; justify-content: flex-end">
-          <n-button round type="primary" @click="submit"> submit </n-button>
-        </div>
-      </n-form>
-    </n-card>
-  </div>
+                <div style="display: flex; justify-content: space-between">
+                    <n-button round type="primary" @click="submit" style="margin-left: 0px;">
+                        submit
+                    </n-button>
+                    <n-button round type="primary" @click="cancel">
+                        cancel
+                    </n-button>
+                </div>
+            </n-form>
+
+        </n-card>
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { ArchiveOutline as ArchiveIcon } from "@vicons/ionicons5";
-import type { FormInst } from "naive-ui";
-import { reactive, ref } from "vue";
 
-const formRef = ref<FormInst | null>(null);
+import { ArchiveOutline as ArchiveIcon } from '@vicons/ionicons5'
+import { useMessage, type FormInst } from 'naive-ui';
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const size = ref("medium");
+const message = useMessage();
+
+const router = useRouter();
+
+
+const formRef = ref<FormInst | null>(null)
+
+
+const size = ref("medium")
 
 let model = reactive({
   title: "",
@@ -107,20 +115,34 @@ const rules = reactive({
 
 // 点击提交
 const submit = (e: MouseEvent) => {
-  e.preventDefault();
-  formRef.value?.validate((errors) => {
-    if (!errors) {
-      console.log("success");
-    } else {
-      console.log(errors);
-    }
-  });
-};
+
+    e.preventDefault();
+    formRef.value?.validate((errors) => {
+        if (!errors) {
+            console.log("success")
+            message.success("上传成功")
+        } else {
+            console.log("errors")
+            message.info("请填写必要字段")
+        }
+    })
+}
+
+// 点击取消
+const cancel = () => {
+    router.back();
+}
+
 </script>
 
 <style scoped>
 .form {
-  top: 50%;
-  left: 50%;
+    top: 50%;
+    left: 50%;
+    min-width: 360px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 </style>
