@@ -16,5 +16,17 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
+    proxy: {
+      "/api": {
+        target: "https://api.dev.magicalsheep.cn",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/casdoor": {
+        target: "https://auth.dev.magicalsheep.cn",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/casdoor/, ""),
+      },
+    },
   },
 });

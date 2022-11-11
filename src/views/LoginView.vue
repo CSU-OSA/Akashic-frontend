@@ -6,10 +6,10 @@ import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCasdoor } from "casdoor-vue-sdk";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import { getUserProfile } from "@/api/user";
+import { login } from "@/api/user";
 
 export default defineComponent({
-  async setup(props) {
+  async setup() {
     const route = useRoute();
     const router = useRouter();
     const system = useSystemStateStore();
@@ -20,9 +20,9 @@ export default defineComponent({
       if (!code || !state) {
         return;
       }
-      const user = await getUserProfile(code as string, state as string);
-      system.setLogin(true);
-      system.setUser(user);
+
+      const { accessToken } = await login(code as string);
+      system.login(accessToken, state as string);
       router.push("/");
     } else {
       window.location.href = getSigninUrl();

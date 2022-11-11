@@ -1,13 +1,11 @@
-import type { IUser } from "@/domain/user.interface";
-import { faker } from "@faker-js/faker";
+import { RestFul } from "../base";
+import config from "$/net/dev.json";
 
-export async function getUserProfile(
-  code: string,
-  state: string
-): Promise<IUser> {
+const restful = new RestFul(config.baseURL.api);
+
+export async function login(code: string): Promise<{ accessToken: string }> {
+  const res = await restful.get<{ token: string }>("/login", { code });
   return {
-    nickName: faker.name.fullName(),
-    id: faker.random.words(),
-    avatar: faker.image.avatar(),
+    accessToken: res.data.token,
   };
 }
