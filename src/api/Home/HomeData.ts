@@ -1,7 +1,7 @@
 import type { IResource } from "@/domain/resource.interface";
 
 // TODO 获取用户自己的资源列表,用来展示在Home的左侧部分
-export const useUserSelfResource = () => {
+export const useUserSelfResource = (): IResource[] => {
   //Real Code here
   return [
     {
@@ -36,7 +36,7 @@ export const useUserSelfResource = () => {
 };
 
 // TODO 获取热门资源列表,用来展示在Home右侧
-export const useHotResource = () => {
+export const useHotResource = (): IResource[] => {
   // Real Code here
   return [
     {
@@ -83,7 +83,7 @@ export const useUserFootPoint = () => {
 };
 
 // TODO 获取Home中间部分推荐资源列表
-export const useRecommendResource = () => {
+export const useRecommendResource = (): IResource[] => {
   // Real Code here
   return [
     {

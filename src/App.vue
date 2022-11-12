@@ -46,6 +46,15 @@ const layoutTheme: GlobalThemeOverrides = {
     colorHover: theme.secondary,
     textColorHover: theme.onSecondary,
     borderHover: theme.secondaryContainer,
+    colorFocus: theme.secondary,
+    textColorFocus: theme.onSecondary,
+    borderFocus: theme.secondaryContainer,
+  },
+  Menu: {
+    color: theme.primary,
+    itemTextColor: theme.onPrimary,
+    itemColorHover: theme.secondary,
+    itemTextColorHover: theme.onSecondary,
   },
   Input: {
     colorFocus: theme.background,
@@ -70,6 +79,10 @@ const contentTheme: GlobalThemeOverrides = {
   Card: {
     colorEmbedded: theme.background,
     textColor: theme.onBackground,
+  },
+  List: {
+    colorHover: theme.primary,
+    colorHoverModal: theme.primary,
   },
 };
 </script>

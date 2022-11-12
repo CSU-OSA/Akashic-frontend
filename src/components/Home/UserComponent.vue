@@ -1,30 +1,16 @@
 <template>
   <n-space vertical>
     <n-space>
-      <n-avatar
-        :bordered="true"
-        round
-        size="small"
-        :src="user?.avatar || logo"
+      <user-avatar
+        :display-name="!!(system.$state.isLogin && system.$state.user)"
       />
-      <!-- TODO 之后将router to改为个人主页界面的 -->
-      <router-link to="/upload">
-        <a id="nick" title="前往个人主页">{{ user?.nickName || "guest" }}</a>
-      </router-link>
     </n-space>
 
     <n-hr class="mt-0.5" />
     <n-space vertical>
       <n-space justify="space-between">
         <n-h4>Recent Resource</n-h4>
-        <n-button
-          type="success"
-          text-color="black"
-          class="lg:block"
-          @click="AddBtnClickEvent"
-        >
-          Add
-        </n-button>
+        <n-button class="lg:block" @click="AddBtnClickEvent"> Add </n-button>
       </n-space>
       <n-input
         placeholder="Find a Resource"
@@ -67,18 +53,18 @@
 
 <script setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
-import { CodeSlash, DocumentTextOutline, EarthSharp } from "@vicons/ionicons5";
+import { DocumentTextOutline } from "@vicons/ionicons5";
+import WikiIcon from "@/components/icons/WikiIcon.vue";
+import RepoIcon from "@/components/icons/RepoIcon.vue";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import logo from "@/assets/logo.png";
+import UserAvatar from "@/components/pieces/UserAvatar.vue";
 import { useUserSelfResource, useUserTags } from "@/api/Home/HomeData";
 
 const router = useRouter();
-const systemStore = useSystemStateStore();
+const system = useSystemStateStore();
 const searchVal = ref("");
-
-const user = systemStore.$state.user;
 
 // 从api中调用函数获取用户自己的资源列表
 const UserResourceDataDemos = useUserSelfResource();
@@ -87,9 +73,9 @@ const UserTagsDataDemos = useUserTags();
 
 const iconType = (data: IResource) => {
   if (data.type === "code") {
-    return CodeSlash;
+    return RepoIcon;
   } else if (data.type === "wiki") {
-    return EarthSharp;
+    return WikiIcon;
   } else {
     return DocumentTextOutline;
   }
@@ -128,14 +114,3 @@ const resourceList = () => {
   });
 };
 </script>
-
-<style scoped>
-#nick {
-  font-weight: bold;
-  font-size: medium;
-}
-#nick:hover {
-  text-decoration: underline;
-  color: mediumblue;
-}
-</style>

@@ -23,6 +23,6 @@ export const useSystemStateStore = defineStore("system_state", {
       this.isLogin = false;
       this.authUtils = null;
       this.user = null;
-    }
+    },
   },
 });
