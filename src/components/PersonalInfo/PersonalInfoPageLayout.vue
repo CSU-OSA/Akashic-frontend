@@ -41,7 +41,7 @@
 <script setup lang="tsx">
 import BasicInfoBar from "@/components/PersonalInfo/BasicInfoBar.vue";
 import NavigationBar from "@/components/PersonalInfo/NavigationBar.vue";
-import GeneralView from "@/components/PersonalInfo/GeneralView.vue";
+import GeneralView from "@/components/PersonalInfo/GeneralView/GeneralView.vue";
 import PostListView from "@/components/PersonalInfo/PostListView.vue";
 import RepoListView from "@/components/PersonalInfo/RepoListView.vue";
 import StarListView from "@/components/PersonalInfo/StarListView.vue";
@@ -126,14 +126,14 @@ const tabViewDiv = () => {
 
   .pc-navBar-inner {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 300px minmax(0, 980px);
     grid-auto-flow: column;
     gap: 0.5rem;
   }
 
   .contentDiv {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 300px minmax(0, 980px);
     grid-template-rows: auto;
     gap: 0.5rem;
   }

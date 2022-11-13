@@ -31,16 +31,9 @@
 <script setup lang="tsx">
 import { NButton, NA } from "naive-ui";
 import { PeopleAltOutlined } from "@vicons/material";
-import logo from "@/assets/logo.png";
+import { useBasicPersonalInfo } from "@/api/PersonalInfoPage/PersonalInfoData";
 
-//需要从后端获取
-const userInfo = {
-  avatar: logo,
-  userNick: "Test_User",
-  userUniqueID: "Test-user",
-  follower: 10,
-  following: 0,
-};
+const userInfo = useBasicPersonalInfo();
 </script>
 
 <style scoped>
