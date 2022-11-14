@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import { Home } from "../views/Home";
 import PostPage from "../views/PostPage.vue";
 import HomeView from "../views/HomeView.vue";
@@ -7,7 +7,6 @@ import Login from "../views/LoginView.vue";
 import Logout from "@/views/LogoutView.vue";
 import Upload from "../views/FileUploadView.vue";
 import PersonalInfoView from "../views/PersonalInfoView.vue";
-import PostPage from "../views/PostPage.vue"
 
 const router = createRouter({
   history: createWebHashHistory(),
