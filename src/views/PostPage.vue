@@ -24,7 +24,7 @@ import DownloadArea from "@/components/PostPage/downloadArea.vue";
 <style scoped>
 .left {
   height: 100%;
-  width: 30%;
+  width: 500px;
   background: azure;
   padding: 30px;
   position: sticky;
@@ -32,7 +32,7 @@ import DownloadArea from "@/components/PostPage/downloadArea.vue";
 }
 .remain {
   height: 100%;
-  width: 70%;
+  width: 100%;
   padding: 30px;
 }
 .mdParser {
