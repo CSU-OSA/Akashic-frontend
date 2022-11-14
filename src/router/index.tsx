@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { Home } from "../views/Home";
 import PostPage from "../views/PostPage.vue";
 import HomeView from "../views/HomeView.vue";
 import SearchResult from "../views/SearchResult.vue";
