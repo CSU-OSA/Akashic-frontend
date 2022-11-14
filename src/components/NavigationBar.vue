@@ -1,13 +1,14 @@
 <template>
   <nav class="flex flex-col">
     <div
-      :class="`h-20 flex gap-3 p-5 items-center ${theme(
+      :class="`h-20 flex gap-3 p-5 items-center ${t(
+        'text-onPrimary',
         'bg-primary'
-      )} text-onPrimary`"
+      )}`"
     >
       <RouterLink
         to="/"
-        :class="`${theme(
+        :class="`${t(
           'text-onPrimary'
         )} font-bold text-3xl w-full md:w-auto flex justify-center`"
         >Akashic</RouterLink
@@ -69,10 +70,9 @@
         state.showMobileMenu ? '' : 'hidden'
       }`"
     >
-      <search-input class="bg-primary dark:bg-dark-primary p-5"></search-input>
-      <RouterLink class="p-5" to="upload">
-        <n-button>上传资源</n-button>
-      </RouterLink>
+      <search-input
+        :class="`${t('text-onPrimary', 'bg-primary')} p-5`"
+      ></search-input>
       <n-menu
         mode="vertical"
         :options="getMobileMenuOptions(systemState.$state.isLogin)"
@@ -91,9 +91,9 @@ import { useSystemStateStore } from "@/stores/systemStateStore";
 import type { OnSelect } from "naive-ui/es/auto-complete/src/interface";
 import links from "$/links.json";
 import { RouterLink, useRouter } from "vue-router";
-import { reactive, nextTick } from "vue";
+import { reactive } from "vue";
 import { useCasdoor } from "casdoor-vue-sdk";
-import { theme } from "@/utils/themeSelector";
+import { useTheme as t } from "@/utils/themeSelector";
 
 const { getSigninUrl } = useCasdoor();
 const systemState = useSystemStateStore();
@@ -132,6 +132,14 @@ const getMobileMenuOptions = (isLogin: boolean): MenuOption[] =>
         key: link.label,
         label: () => <RouterLink to={link.to}>{link.label}</RouterLink>,
       })),
+      {
+        key: "uploadResource",
+        label: () => (
+          <RouterLink to="upload">
+            <span style="font-weight:bold;">上传资源</span>
+          </RouterLink>
+        ),
+      },
       {
         key: "user",
         label: () => <UserAvatar displayName={true} linkDisabled={true} />,
