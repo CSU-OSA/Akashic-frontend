@@ -4,8 +4,8 @@ import SearchResult from "../views/SearchResult.vue";
 import Login from "../views/LoginView.vue";
 import Logout from "@/views/LogoutView.vue";
 import Upload from "../views/FileUploadView.vue";
-import { PostPage } from "@/views/PostPage";
 import PersonalInfoView from "../views/PersonalInfoView.vue";
+import PostPage from "../views/PostPage.vue"
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -13,6 +13,10 @@ const router = createRouter({
     {
       path: "/",
       component: HomeView,
+    },
+    {
+      path: "/postpage",
+      component: PostPage,
     },
     {
       path: "/search",
