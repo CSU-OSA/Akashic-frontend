@@ -7,6 +7,7 @@ import casdoor from "casdoor-vue-sdk";
 import App from "./App.vue";
 import router from "./router";
 import "./style/style.css";
+import showdown from "showdown";
 
 
 const config = {
@@ -24,5 +25,6 @@ app.use(router);
 app.use(naive);
 app.use(mavonEditor);
 app.use(casdoor,config);
+
 
 app.mount("#app");
