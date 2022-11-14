@@ -13,7 +13,7 @@ const config = {
   clientId: "31552fe8187459739ac9",
   organizationName: "csu-osa",
   appName: "akashic",
-  redirectPath: "/login/success",
+  redirectPath: "/#/login/success",
 };
 
 const app = createApp(App);
