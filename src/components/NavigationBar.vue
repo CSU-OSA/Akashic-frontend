@@ -1,9 +1,15 @@
 <template>
   <nav class="flex flex-col">
-    <div class="h-20 flex gap-3 p-5 items-center bg-primary text-onPrimary">
+    <div
+      :class="`h-20 flex gap-3 p-5 items-center ${theme(
+        'bg-primary'
+      )} text-onPrimary`"
+    >
       <RouterLink
         to="/"
-        class="text-onPrimary font-bold text-3xl w-full md:w-auto flex justify-center"
+        :class="`${theme(
+          'text-onPrimary'
+        )} font-bold text-3xl w-full md:w-auto flex justify-center`"
         >Akashic</RouterLink
       >
       <div class="hidden md:block">
@@ -19,6 +25,26 @@
       <RouterLink class="hidden md:block md:ml-auto" to="upload">
         <n-button>上传资源</n-button>
       </RouterLink>
+      <n-button
+        :onclick="
+          () => {
+            systemState.setDarkMode(!systemState.$state.isDarkMode);
+          }
+        "
+      >
+        <n-icon
+          size="20"
+          :class="`${systemState.$state.isDarkMode ? 'hidden' : ''}`"
+        >
+          <Sunny />
+        </n-icon>
+        <n-icon
+          size="20"
+          :class="` ${systemState.$state.isDarkMode ? '' : 'hidden'}`"
+        >
+          <Moon />
+        </n-icon>
+      </n-button>
       <n-dropdown
         trigger="click"
         :options="getMenuOptions(systemState.$state.isLogin)"
@@ -39,11 +65,11 @@
       </n-button>
     </div>
     <n-list
-      :class="`md:hidden bg-primary pb-5 ${
+      :class="`md:hidden bg-primary dark:bg-dark-primary pb-5 ${
         state.showMobileMenu ? '' : 'hidden'
       }`"
     >
-      <search-input class="bg-primary p-5"></search-input>
+      <search-input class="bg-primary dark:bg-dark-primary p-5"></search-input>
       <RouterLink class="p-5" to="upload">
         <n-button>上传资源</n-button>
       </RouterLink>
@@ -60,13 +86,14 @@ import type { DropdownOption, MenuOption } from "naive-ui";
 import { NButton, NDropdown, NMenu, NIcon, NList } from "naive-ui";
 import SearchInput from "@/components/pieces/SearchInput.vue";
 import UserAvatar from "@/components/pieces/UserAvatar.vue";
-import { Menu } from "@vicons/ionicons5";
+import { Menu, Sunny, Moon } from "@vicons/ionicons5";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import type { OnSelect } from "naive-ui/es/auto-complete/src/interface";
 import links from "$/links.json";
 import { RouterLink, useRouter } from "vue-router";
-import { reactive } from "vue";
+import { reactive, nextTick } from "vue";
 import { useCasdoor } from "casdoor-vue-sdk";
+import { theme } from "@/utils/themeSelector";
 
 const { getSigninUrl } = useCasdoor();
 const systemState = useSystemStateStore();

@@ -1,2 +1,3 @@
-import theme from "./material.json";
-export default theme;
+import lightTheme from "./default/material.light.json";
+import darkTheme from "./default/material.dark.json";
+export default { lightTheme, darkTheme };

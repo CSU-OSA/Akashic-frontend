@@ -8,4 +8,7 @@ export interface ISystemState {
   isLogin: boolean;
   isAdmin: boolean;
   user: IUser | null;
+  isDarkMode: boolean;
+  lightTheme: number;
+  darkTheme: number;
 }
