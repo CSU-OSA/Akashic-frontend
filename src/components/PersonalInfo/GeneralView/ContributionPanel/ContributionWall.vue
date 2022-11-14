@@ -27,8 +27,8 @@
 
 <script setup lang="tsx">
 import type { VNode } from "vue";
-import { ref, onMounted, nextTick } from "vue";
-import { IPersonalMonthContribution } from "@/api/PersonalInfoPage/PersonalInfoData";
+import { ref, onMounted } from "vue";
+import type { IPersonalMonthContribution } from "@/api/PersonalInfoPage/PersonalInfoData";
 import ContributionDayBox from "./ContributionDayBox.vue";
 
 const $thisDiv = ref();

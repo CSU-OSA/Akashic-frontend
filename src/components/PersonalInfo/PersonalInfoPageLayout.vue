@@ -48,9 +48,9 @@ import StarListView from "@/components/PersonalInfo/StarListView.vue";
 import { nextTick, ref } from "vue";
 
 //需要从后端获取
-const postList = [];
-const repoList = [];
-const starList = [];
+const postList: any = [];
+const repoList: any = [];
+const starList: any = [];
 
 const tabBarPosition = ref(0);
 
