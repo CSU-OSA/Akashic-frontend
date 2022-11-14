@@ -1,6 +1,10 @@
 import { useSystemStateStore } from "@/stores/systemStateStore";
+import type theme_base from "$/themes/_.json";
 
-export function theme(className: string) {
+type base = keyof typeof theme_base;
+type prefix = "border" | "text" | "bg" | "fill";
+
+function t(className: `${prefix}-${base}` | base) {
   const systemState = useSystemStateStore();
   const modeType = systemState.isDarkMode ? "dark" : "light";
 
@@ -24,4 +28,10 @@ export function theme(className: string) {
     "-" +
     className.split("-")[1]
   );
+}
+
+export function useTheme(...clazzs: Parameters<typeof t>[0][]) {
+  return clazzs
+    .map((clazz) => t(clazz))
+    .reduce((prev, cur) => `${cur} ${prev}`, "");
 }
