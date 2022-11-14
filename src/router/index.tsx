@@ -1,4 +1,6 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+import { Home } from "../views/Home";
+import PostPage from "../views/PostPage.vue";
 import HomeView from "../views/HomeView.vue";
 import SearchResult from "../views/SearchResult.vue";
 import Login from "../views/LoginView.vue";
@@ -37,6 +39,10 @@ const router = createRouter({
     {
       path: "/personal",
       component: PersonalInfoView,
+    },
+    {
+      path: "/PostPage",
+      component: PostPage,
     },
   ],
 });
