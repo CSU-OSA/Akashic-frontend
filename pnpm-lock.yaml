@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@faker-js/faker': ^7.6.0
+  '@material/web': 0.1.0-alpha.0
   '@playwright/test': ^1.27.1
   '@rushstack/eslint-patch': ^1.1.4
   '@types/jsdom': ^20.0.0
@@ -48,8 +49,10 @@ specifiers:
   vue-router: ^4.1.5
   vue-tsc: ^1.0.8
   vue3-markdown-it: ^1.0.10
+  web: link:@types/@material/web
 
 dependencies:
+  '@material/web': 0.1.0-alpha.0
   '@types/markdown-it': 12.2.3
   '@vicons/antd': 0.12.0
   '@vicons/carbon': 0.12.0
@@ -72,6 +75,7 @@ dependencies:
   vue: 3.2.41
   vue-router: 4.1.6_vue@3.2.41
   vue3-markdown-it: 1.0.10_@types+markdown-it@12.2.3
+  web: link:@types/@material/web
 
 devDependencies:
   '@faker-js/faker': 7.6.0
@@ -507,6 +511,17 @@ packages:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: false
 
+  /@lit/reactive-element/1.4.2:
+    resolution: {integrity: sha512-VMOxsWh/QDwrxPsgkSQnuZ+8mfNy1OTjzzUdLBvvZtpahwPTHTeVZ51RZRqO4xfKVrR+btIPA8D01IL3xeG66w==}
+    dev: false
+
+  /@material/web/0.1.0-alpha.0:
+    resolution: {integrity: sha512-GNsNyWOtYKezXwvrD1ZBfnOHClVya31ZEQH1O83+PsPqlVZK6cBfnf1cwJmEFQ6FezB6q6q+cHGGqx0lb90Jug==}
+    dependencies:
+      lit: 2.4.1
+      tslib: 2.4.1
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -625,6 +640,10 @@ packages:
   /@types/tough-cookie/4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
     dev: true
+
+  /@types/trusted-types/2.0.2:
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin/5.42.0_3w4pgp7t2frixi5l37xnsiadhy:
     resolution: {integrity: sha512-5TJh2AgL6+wpL8H/GTSjNb4WrjKoR2rqvFxR/DDTqYNk6uXn8BJMEcncLSpMbf/XV1aS0jAjYwn98uvVCiAywQ==}
@@ -2495,6 +2514,27 @@ packages:
       uc.micro: 1.0.6
     dev: false
 
+  /lit-element/3.2.2:
+    resolution: {integrity: sha512-6ZgxBR9KNroqKb6+htkyBwD90XGRiqKDHVrW/Eh0EZ+l+iC+u+v+w3/BA5NGi4nizAVHGYvQBHUDuSmLjPp7NQ==}
+    dependencies:
+      '@lit/reactive-element': 1.4.2
+      lit-html: 2.4.0
+    dev: false
+
+  /lit-html/2.4.0:
+    resolution: {integrity: sha512-G6qXu4JNUpY6aaF2VMfaszhO9hlWw0hOTRFDmuMheg/nDYGB+2RztUSOyrzALAbr8Nh0Y7qjhYkReh3rPnplVg==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+    dev: false
+
+  /lit/2.4.1:
+    resolution: {integrity: sha512-qohSgLiyN1cFnJG26dIiY03S4F49857A0AHQfnS0zYtnUVnD2MFvx+UT52rtXsIuNFQrnUupX+zyGSATlk1f/A==}
+    dependencies:
+      '@lit/reactive-element': 1.4.2
+      lit-element: 3.2.2
+      lit-html: 2.4.0
+    dev: false
+
   /load-json-file/4.0.0:
     resolution: {integrity: sha512-Kx8hMakjX03tiGTLAIdJ+lL0htKnXjEZN6hk/tozf/WOuYGdZBJrZ+rCJRbVCugsjB3jMLn9746NsQIf5VjBMw==}
     engines: {node: '>=4'}
@@ -3418,6 +3458,10 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
+
+  /tslib/2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: false
 
   /tsutils/3.21.0_typescript@4.7.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

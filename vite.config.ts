@@ -7,7 +7,17 @@ import eslint from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx(), eslint()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.includes("md-"),
+        },
+      },
+    }),
+    vueJsx(),
+    eslint(),
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
