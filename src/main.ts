@@ -9,7 +9,6 @@ import router from "./router";
 import "./style/style.css";
 import showdown from "showdown";
 
-
 const config = {
   serverUrl: "https://auth.dev.magicalsheep.cn",
   clientId: "31552fe8187459739ac9",
@@ -24,7 +23,6 @@ app.use(createPinia());
 app.use(router);
 app.use(naive);
 app.use(mavonEditor);
-app.use(casdoor,config);
-
+app.use(casdoor, config);
 
 app.mount("#app");
