@@ -1,9 +1,16 @@
 <template>
   <nav class="flex flex-col">
-    <div class="h-20 flex gap-3 p-5 items-center bg-primary text-onPrimary">
+    <div
+      :class="`h-20 flex gap-3 p-5 items-center ${t(
+        'text-onPrimary',
+        'bg-primary'
+      )}`"
+    >
       <RouterLink
         to="/"
-        class="text-onPrimary font-bold text-3xl w-full md:w-auto flex justify-center"
+        :class="`${t(
+          'text-onPrimary'
+        )} font-bold text-3xl w-full md:w-auto flex justify-center`"
         >Akashic</RouterLink
       >
       <div class="hidden md:block">
@@ -19,6 +26,26 @@
       <RouterLink class="hidden md:block md:ml-auto" to="upload">
         <n-button>上传资源</n-button>
       </RouterLink>
+      <n-button
+        :onclick="
+          () => {
+            systemState.setDarkMode(!systemState.$state.isDarkMode);
+          }
+        "
+      >
+        <n-icon
+          size="20"
+          :class="`${systemState.$state.isDarkMode ? 'hidden' : ''}`"
+        >
+          <Sunny />
+        </n-icon>
+        <n-icon
+          size="20"
+          :class="` ${systemState.$state.isDarkMode ? '' : 'hidden'}`"
+        >
+          <Moon />
+        </n-icon>
+      </n-button>
       <n-dropdown
         trigger="click"
         :options="getMenuOptions(systemState.$state.isLogin)"
@@ -39,14 +66,13 @@
       </n-button>
     </div>
     <n-list
-      :class="`md:hidden bg-primary pb-5 ${
+      :class="`md:hidden bg-primary dark:bg-dark-primary pb-5 ${
         state.showMobileMenu ? '' : 'hidden'
       }`"
     >
-      <search-input class="bg-primary p-5"></search-input>
-      <RouterLink class="p-5" to="upload">
-        <n-button>上传资源</n-button>
-      </RouterLink>
+      <search-input
+        :class="`${t('text-onPrimary', 'bg-primary')} p-5`"
+      ></search-input>
       <n-menu
         mode="vertical"
         :options="getMobileMenuOptions(systemState.$state.isLogin)"
@@ -60,13 +86,14 @@ import type { DropdownOption, MenuOption } from "naive-ui";
 import { NButton, NDropdown, NMenu, NIcon, NList } from "naive-ui";
 import SearchInput from "@/components/pieces/SearchInput.vue";
 import UserAvatar from "@/components/pieces/UserAvatar.vue";
-import { Menu } from "@vicons/ionicons5";
+import { Menu, Sunny, Moon } from "@vicons/ionicons5";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import type { OnSelect } from "naive-ui/es/auto-complete/src/interface";
 import links from "$/links.json";
 import { RouterLink, useRouter } from "vue-router";
 import { reactive } from "vue";
 import { useCasdoor } from "casdoor-vue-sdk";
+import { useTheme as t } from "@/utils/themeSelector";
 
 const { getSigninUrl } = useCasdoor();
 const systemState = useSystemStateStore();
@@ -105,6 +132,14 @@ const getMobileMenuOptions = (isLogin: boolean): MenuOption[] =>
         key: link.label,
         label: () => <RouterLink to={link.to}>{link.label}</RouterLink>,
       })),
+      {
+        key: "uploadResource",
+        label: () => (
+          <RouterLink to="upload">
+            <span style="font-weight:bold;">上传资源</span>
+          </RouterLink>
+        ),
+      },
       {
         key: "user",
         label: () => <UserAvatar displayName={true} linkDisabled={true} />,

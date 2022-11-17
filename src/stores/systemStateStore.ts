@@ -7,6 +7,9 @@ const initState = (): ISystemState => ({
   isAdmin: false,
   authUtils: null,
   user: null,
+  isDarkMode: false,
+  lightTheme: 0,
+  darkTheme: 0,
 });
 
 export const useSystemStateStore = defineStore("system_state", {
@@ -23,6 +26,15 @@ export const useSystemStateStore = defineStore("system_state", {
       this.isLogin = false;
       this.authUtils = null;
       this.user = null;
+    },
+    setDarkMode(isNightMode: boolean) {
+      this.isDarkMode = isNightMode;
+    },
+    setLightTheme(themeIndex: number) {
+      this.lightTheme = themeIndex;
+    },
+    setDarkTheme(themeIndex: number) {
+      this.darkTheme = themeIndex;
     },
   },
 });
