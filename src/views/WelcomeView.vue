@@ -39,7 +39,6 @@ const signin = () => (window.location.href = getSigninUrl());
 const signup = () => (window.location.href = getSignupUrl());
 </script>
 <style scoped>
-/* DEMO-SPECIFIC STYLES */
 .typewriter h1 {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid transparent; /* The typwriter cursor */
@@ -81,7 +80,10 @@ const signup = () => (window.location.href = getSignupUrl());
 }
 
 .welcome-view-title {
-  background: url("earth.gif") text center no-repeat;
+  padding: 1rem;
+  background: url("earth.gif") center no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   font-family: "anton";
   -webkit-text-stroke: 2px white;

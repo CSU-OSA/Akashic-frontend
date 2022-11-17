@@ -43,7 +43,11 @@ const systemState = useSystemStateStore();
 const router = useRouter();
 
 router.beforeEach((to) => {
-  if (!systemState.$state.isLogin && to.path !== "/welcome") {
+  if (
+    !systemState.$state.isLogin &&
+    to.path !== "/welcome" &&
+    to.path.indexOf("login") === -1
+  ) {
     return { path: "/welcome" };
   }
 });
