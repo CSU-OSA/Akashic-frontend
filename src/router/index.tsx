@@ -1,11 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import PostPage from "../views/PostPage.vue";
-import HomeView from "../views/HomeView.vue";
-import SearchResult from "../views/SearchResult.vue";
-import Login from "../views/LoginView.vue";
+import PostPage from "@/views/PostPage.vue";
+import HomeView from "@/views/HomeView.vue";
+import SearchResult from "@/views/SearchResult.vue";
+import Login from "@/views/LoginView.vue";
 import Logout from "@/views/LogoutView.vue";
-import Upload from "../views/FileUploadView.vue";
-import PersonalInfoView from "../views/PersonalInfoView.vue";
+import Upload from "@/views/FileUploadView.vue";
+import PersonalInfoView from "@/views/PersonalInfoView.vue";
+import WelcomeView from "@/views/WelcomeView.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -13,6 +14,10 @@ const router = createRouter({
     {
       path: "/",
       component: HomeView,
+    },
+    {
+      path: "/welcome",
+      component: WelcomeView,
     },
     {
       path: "/postpage",

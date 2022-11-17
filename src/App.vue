@@ -28,8 +28,8 @@
   </n-config-provider>
 </template>
 <script setup lang="ts">
-import { ref, nextTick, watch } from "vue";
-import { RouterView } from "vue-router";
+import { ref, nextTick } from "vue";
+import { RouterView, useRouter } from "vue-router";
 import NavigationBar from "./components/NavigationBar.vue";
 import type {
   GlobalThemeOverrides,
@@ -40,6 +40,13 @@ import Theme from "$/themes";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 
 const systemState = useSystemStateStore();
+const router = useRouter();
+
+router.beforeEach((to) => {
+  if (!systemState.$state.isLogin && to.path !== "/welcome") {
+    return { path: "/welcome" };
+  }
+});
 
 nextTick(() => {
   if (window.matchMedia("(prefers-color-scheme: dark)")) {
