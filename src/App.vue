@@ -30,6 +30,7 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 import { RouterView, useRouter } from "vue-router";
+import Axios from "axios";
 import NavigationBar from "./components/NavigationBar.vue";
 import type {
   GlobalThemeOverrides,
@@ -38,9 +39,19 @@ import type {
 } from "naive-ui";
 import Theme from "$/themes";
 import { useSystemStateStore } from "@/stores/systemStateStore";
+import { useRESTfulService } from "./api/base";
 
 const systemState = useSystemStateStore();
 const router = useRouter();
+
+const requestor = Axios.create();
+requestor.interceptors.request.use((config) => ({
+  ...config,
+  headers: {
+    Authorization: systemState.$state.authUtils?.accessToken,
+  },
+}));
+useRESTfulService(requestor);
 
 router.beforeEach((to) => {
   if (

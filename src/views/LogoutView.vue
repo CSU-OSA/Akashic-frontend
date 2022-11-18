@@ -5,10 +5,11 @@
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import { logout } from "@/api/user";
+import { useLogout } from "@/api/user";
 
 export default defineComponent({
   async setup() {
+    const logout = useLogout();
     const router = useRouter();
     const system = useSystemStateStore();
     const authUtils = system.$state.authUtils;

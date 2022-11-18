@@ -8,10 +8,11 @@ import { useRoute, useRouter } from "vue-router";
 import jwt_decode from "jwt-decode";
 import { useCasdoor } from "casdoor-vue-sdk";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import { login } from "@/api/user";
+import { useLogin } from "@/api/user";
 
 export default defineComponent({
   async setup() {
+    const login = useLogin();
     const route = useRoute();
     const router = useRouter();
     const system = useSystemStateStore();
