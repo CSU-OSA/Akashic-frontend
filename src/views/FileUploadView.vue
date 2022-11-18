@@ -41,8 +41,8 @@
           <n-upload
             multiple
             directory-dnd
-            action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f"
             :max="10"
+            @update:file-list="onUpdateFileListHandler"
           >
             <n-upload-dragger>
               <div style="margin-bottom: 12px">
@@ -70,9 +70,15 @@
 
 <script lang="ts" setup>
 import { ArchiveOutline as ArchiveIcon } from "@vicons/ionicons5";
-import { useMessage, type FormInst } from "naive-ui";
+import { useMessage, type FormInst, type UploadFileInfo } from "naive-ui";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useSystemStateStore } from "@/stores/systemStateStore";
+import { useUpload } from "@/api/file";
+
+const upload = useUpload();
+
+const system = useSystemStateStore();
 
 const message = useMessage();
 
@@ -111,8 +117,16 @@ const rules = reactive({
   },
 });
 
+const onUpdateFileListHandler = async (fileList: UploadFileInfo[]) => {
+  if (!system.$state.user) {
+    return;
+  }
+  console.log(fileList);
+  upload(system.$state.user?.name, fileList[0].file as File);
+};
+
 // 点击提交
-const submit = (e: MouseEvent) => {
+const submit = async (e: MouseEvent) => {
   e.preventDefault();
   formRef.value?.validate((errors) => {
     if (!errors) {
