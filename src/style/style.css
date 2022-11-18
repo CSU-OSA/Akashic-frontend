@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "anton";
-    src: url("Anton-Regular.ttf");
+    src: url("@/assets/Anton-Regular.ttf");
 }
 
 html, body {
