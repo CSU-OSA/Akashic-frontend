@@ -69,7 +69,7 @@ const signup = () => (window.location.href = getSignupUrl());
   }
 }
 .welcome-view-background {
-  background: url("earth.gif") center no-repeat;
+  background: url("@/assets/earth.gif") center no-repeat;
   background-color: black;
   color: transparent;
   font-family: "anton";
@@ -81,7 +81,7 @@ const signup = () => (window.location.href = getSignupUrl());
 
 .welcome-view-title {
   padding: 1rem;
-  background: url("earth.gif") center no-repeat;
+  background: url("@/assets/earth.gif") center no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
