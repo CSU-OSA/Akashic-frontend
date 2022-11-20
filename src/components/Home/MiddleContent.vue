@@ -19,11 +19,11 @@
   </n-space>
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
 import MiddleContentItem from "./MiddleContentItem.vue";
 import { useRecommendResource } from "@/api/Home/HomeData";
 
-const demoDataList = useRecommendResource();
+const demoDataList = await useRecommendResource();
 </script>
 
 <style scoped></style>

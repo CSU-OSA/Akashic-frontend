@@ -73,12 +73,9 @@ import { ArchiveOutline as ArchiveIcon } from "@vicons/ionicons5";
 import { useMessage, type FormInst, type UploadFileInfo } from "naive-ui";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useSystemStateStore } from "@/stores/systemStateStore";
 import { useUpload } from "@/api/file";
 
 const upload = useUpload();
-
-const system = useSystemStateStore();
 
 const message = useMessage();
 
@@ -118,11 +115,7 @@ const rules = reactive({
 });
 
 const onUpdateFileListHandler = async (fileList: UploadFileInfo[]) => {
-  if (!system.$state.user) {
-    return;
-  }
-  console.log(fileList);
-  upload(system.$state.user?.name, fileList[0].file as File);
+  upload(fileList[0].file as File);
 };
 
 // 点击提交

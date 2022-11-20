@@ -4,6 +4,8 @@
       <UserComponent />
     </div>
     <div class="remain">
+      <h1 class="text-5xl p-5">{{title}}</h1>
+      <a :href="url">download</a>
       <mdParser></mdParser>
       <download-area></download-area>
       <comment></comment>
@@ -17,6 +19,11 @@ import comment from "../components/PostPage/CommentArea.vue";
 import download from "../components/PostPage/DownloadArea.vue";
 import UserComponent from "../components/Home/UserComponent.vue";
 import DownloadArea from "@/components/PostPage/DownloadArea.vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const title = route.query.page;
+const url = route.query.url as string;
 </script>
 
 <style scoped>

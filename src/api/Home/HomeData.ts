@@ -1,8 +1,35 @@
 import type { IResource } from "@/domain/resource.interface";
+import { useGetUserResources } from "@/api/file";
+import { useSystemStateStore } from "@/stores/systemStateStore";
+import { reactive } from "vue";
 
 // TODO 获取用户自己的资源列表,用来展示在Home的左侧部分
-export const useUserSelfResource = (): IResource[] => {
+export const useUserSelfResource = async (): Promise<IResource[]> => {
   //Real Code here
+
+  const s = useSystemStateStore();
+
+  const getFiles = useGetUserResources();
+
+  const files = reactive([] as IResource[]);
+
+  const res = await getFiles(s.$state.user?.name as string);
+
+  console.log("res>>>", res);
+
+  res.forEach((e: any, idx) =>
+    files.push({
+      id: idx,
+      description: e.des,
+      title: e.filename,
+      type: "text",
+      url: e.url,
+    })
+  );
+
+  console.log(res);
+
+  return files;
   return [
     {
       id: 1,
@@ -36,8 +63,34 @@ export const useUserSelfResource = (): IResource[] => {
 };
 
 // TODO 获取热门资源列表,用来展示在Home右侧
-export const useHotResource = (): IResource[] => {
+export const useHotResource = async (): Promise<IResource[]> => {
   // Real Code here
+
+
+  const s = useSystemStateStore();
+
+  const getFiles = useGetUserResources();
+
+  const files = reactive([] as IResource[]);
+
+  const res = await getFiles(s.$state.user?.name as string);
+
+  console.log("res>>>", res);
+
+  res.forEach((e: any, idx) =>
+    files.push({
+      id: idx,
+      description: e.des,
+      title: e.filename,
+      type: "text",
+      url: e.url,
+    })
+  );
+
+  console.log(res);
+
+  return files;
+
   return [
     {
       id: 1,
@@ -71,20 +124,70 @@ export const useHotResource = (): IResource[] => {
 };
 
 // TODO 获取用户历史足迹,展示在Home右侧(数量有限制?)
-export const useUserFootPoint = () => {
+export const useUserFootPoint = async () => {
+  const s = useSystemStateStore();
+
+  const getFiles = useGetUserResources();
+
+  const files = reactive([] as any[]);
+
+  const res = await getFiles(s.$state.user?.name as string);
+
+  console.log("res>>>", res);
+
+  res.forEach((e: any, idx) =>
+    files.push({
+      id: idx,
+      content: e.des,
+      title: e.filename,
+      type: "text",
+      url: e.url,
+    })
+  );
+
+  console.log(res);
+
+  return files;
+
   // Real Code here
-  return [
-    { id: 1, content: "浏览了xxxx", time: "10 minutes ago", url: "" },
-    { id: 2, content: "访问了xxx", time: "5 hours ago", url: "" },
-    { id: 3, content: "修改了xxxx", time: "2 days ago", url: "" },
-    { id: 4, content: "上传了xxxx", time: "2 weeks ago", url: "" },
-    { id: 5, content: "参与贡献了xxx wiki", time: "1 months ago", url: "" },
-  ];
+  // return [
+  //   { id: 1, content: "浏览了xxxx", time: "10 minutes ago", url: "" },
+  //   { id: 2, content: "访问了xxx", time: "5 hours ago", url: "" },
+  //   { id: 3, content: "修改了xxxx", time: "2 days ago", url: "" },
+  //   { id: 4, content: "上传了xxxx", time: "2 weeks ago", url: "" },
+  //   { id: 5, content: "参与贡献了xxx wiki", time: "1 months ago", url: "" },
+  // ];
 };
 
 // TODO 获取Home中间部分推荐资源列表
-export const useRecommendResource = (): IResource[] => {
+export const useRecommendResource = async (): Promise<IResource[]> => {
   // Real Code here
+
+
+  const s = useSystemStateStore();
+
+  const getFiles = useGetUserResources();
+
+  const files = reactive([] as IResource[]);
+
+  const res = await getFiles(s.$state.user?.name as string);
+
+  console.log("res>>>", res);
+
+  res.forEach((e: any, idx) =>
+    files.push({
+      id: idx,
+      description: e.des,
+      title: e.filename,
+      type: "text",
+      url: e.url,
+    })
+  );
+
+  console.log(res);
+
+  return files;
+
   return [
     {
       id: 1,

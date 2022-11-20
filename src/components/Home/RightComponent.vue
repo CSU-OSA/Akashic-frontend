@@ -37,14 +37,14 @@
   <n-divider />
 </template>
 
-<script setup lang="ts">
+<script async  setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
 
-const demoTimeDataList = useUserFootPoint();
+const demoTimeDataList = await useUserFootPoint();
 
-const demoHotDataList = useHotResource();
+const demoHotDataList = await useHotResource();
 
 const iconType = (data: IResource) => {
   if (data.type === "code") {

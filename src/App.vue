@@ -39,7 +39,7 @@ import type {
 } from "naive-ui";
 import Theme from "$/themes";
 import { useSystemStateStore } from "@/stores/systemStateStore";
-import { useRESTfulService } from "./api/base";
+import { useCasdoorService, useAkashicService } from "./api/service";
 
 const systemState = useSystemStateStore();
 const router = useRouter();
@@ -51,7 +51,8 @@ requestor.interceptors.request.use((config) => ({
     Authorization: systemState.$state.authUtils?.accessToken,
   },
 }));
-useRESTfulService(requestor);
+useCasdoorService(requestor);
+useAkashicService(requestor);
 
 router.beforeEach((to) => {
   if (

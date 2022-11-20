@@ -1,4 +1,4 @@
-import { casdoorService, akashicService } from "@/api/base";
+import { casdoorService, akashicService } from "@/api/service";
 
 const useLogin = akashicService.defineRequest(({ get }) => {
   return async (code: string) => {

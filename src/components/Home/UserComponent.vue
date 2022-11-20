@@ -20,7 +20,7 @@
 
       <n-list hoverable clickable>
         <n-list-item
-          v-for="item in resourceList()"
+          v-for="item in resourceList"
           :key="item.id"
           @click="clickEvent"
         >
@@ -57,7 +57,7 @@ import { DocumentTextOutline } from "@vicons/ionicons5";
 import WikiIcon from "@/components/icons/WikiIcon.vue";
 import RepoIcon from "@/components/icons/RepoIcon.vue";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import UserAvatar from "@/components/pieces/UserAvatar.vue";
 import { useUserSelfResource, useUserTags } from "@/api/Home/HomeData";
@@ -67,7 +67,10 @@ const system = useSystemStateStore();
 const searchVal = ref("");
 
 // 从api中调用函数获取用户自己的资源列表
-const UserResourceDataDemos = useUserSelfResource();
+const resourceList = await useUserSelfResource();
+
+console.log('>>>>',resourceList);
+computed(() => console.log(resourceList));
 
 const UserTagsDataDemos = useUserTags();
 
@@ -103,14 +106,14 @@ const searchInputChange = (v: string) => {
   //console.log(searchVal.value)
 };
 
-const resourceList = () => {
-  if (searchVal.value === "") {
-    return UserResourceDataDemos;
-  }
-  return UserResourceDataDemos.filter((item) => {
-    if (item.title.search(searchVal.value) !== -1) {
-      return item;
-    }
-  });
-};
+// const resourceList = () => {
+//   if (searchVal.value === "") {
+//     return UserResourceDataDemos;
+//   }
+//   return UserResourceDataDemos.filter((item) => {
+//     if (item.title.search(searchVal.value) !== -1) {
+//       return item;
+//     }
+//   });
+// };
 </script>
