@@ -1,2 +1,2 @@
-import config from "./dev.json";
+import config from "./prod.json";
 export default config;
