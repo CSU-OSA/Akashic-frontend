@@ -16,9 +16,9 @@
       <PostComponent />
     </div>
     <div id="content" class="bg-surface w-full p-15 block md:block">
-      <md-parser></md-parser>
-      <download-area></download-area>
-      <comment></comment>
+      <md-parser class="text-base"></md-parser>
+      <download-area  class="text-xs"></download-area>
+      <comment class="text-xs"></comment>
     </div>
   </div>
 </template>
