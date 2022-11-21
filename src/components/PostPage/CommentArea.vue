@@ -2,13 +2,14 @@
   <div>
     <n-card
       title="comment"
+      :bordered="false"
       :segmented="{
         content: true,
         footer: 'soft',
       }"
     >
       <div v-for="comment in comments" v-bind:key="comment.content">
-        <n-card title>
+        <n-card title :bordered="false">
           <template #header>
             {{ comment.author }}
           </template>
@@ -30,4 +31,8 @@ const comments = [
 ];
 </script>
 
-<style scoped></style>
+<style scoped>
+comment{
+  font-size: 0.75rem
+}
+</style>
