@@ -40,10 +40,6 @@ const router = createRouter({
       component: Upload,
     },
     {
-      path: "/postpage",
-      component: <PostPage />,
-    },
-    {
       path: "/personal",
       component: PersonalInfoView,
     },
