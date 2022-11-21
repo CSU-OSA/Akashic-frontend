@@ -2,7 +2,7 @@ import { casdoorService, akashicService } from "@/api/base";
 
 const useLogin = akashicService.defineRequest(({ get }) => {
   return async (code: string) => {
-    const res = await get<{ token: string }>("/login", { code });
+    const res = await get<{ token: string }>("login", { code });
     return {
       accessToken: res.data.token,
     };
@@ -11,7 +11,7 @@ const useLogin = akashicService.defineRequest(({ get }) => {
 
 const useLogout = casdoorService.defineRequest(({ get }) => {
   return async (accessToken: string, state: string) => {
-    const res = await get("/api/login/oauth/logout", {
+    const res = await get("api/login/oauth/logout", {
       id_token_hint: accessToken,
       state,
     });
