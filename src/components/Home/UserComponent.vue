@@ -9,20 +9,20 @@
     <n-hr class="mt-0.5" />
     <n-space vertical>
       <n-space justify="space-between">
-        <n-h4>Recent Resource</n-h4>
+        <n-h4>最近</n-h4>
         <n-button class="lg:block" @click="AddBtnClickEvent"> Add </n-button>
       </n-space>
       <n-input
-        placeholder="Find a Resource"
+        placeholder="查找你的帖子/仓库"
         size="large"
         @input="searchInputChange"
       ></n-input>
 
       <n-list hoverable clickable>
         <n-list-item
-          v-for="item in resourceList()"
+          v-for="item in resourceList"
           :key="item.id"
-          @click="clickEvent"
+          @click="() => clickEvent(item)"
         >
           <n-thing>
             <template #avatar>
@@ -41,7 +41,7 @@
     <n-hr class="mt-0.5" />
 
     <n-space vertical>
-      <n-h4>Recent Tags</n-h4>
+      <n-h4>最近常看的标签</n-h4>
       <n-space>
         <template v-for="tag in UserTagsDataDemos" :key="tag.id">
           <n-tag :type="tag.display">{{ tag.label }}</n-tag>
@@ -57,7 +57,7 @@ import { DocumentTextOutline } from "@vicons/ionicons5";
 import WikiIcon from "@/components/icons/WikiIcon.vue";
 import RepoIcon from "@/components/icons/RepoIcon.vue";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useSystemStateStore } from "@/stores/systemStateStore";
 import UserAvatar from "@/components/pieces/UserAvatar.vue";
 import { useUserSelfResource, useUserTags } from "@/api/Home/HomeData";
@@ -67,7 +67,10 @@ const system = useSystemStateStore();
 const searchVal = ref("");
 
 // 从api中调用函数获取用户自己的资源列表
-const UserResourceDataDemos = useUserSelfResource();
+const resourceList = await useUserSelfResource();
+
+console.log(">>>>", resourceList);
+computed(() => console.log(resourceList));
 
 const UserTagsDataDemos = useUserTags();
 
@@ -86,9 +89,10 @@ const AddBtnClickEvent = (e: MouseEvent) => {
   router.push("/upload");
 };
 
-const clickEvent = (e: MouseEvent) => {
-  e.preventDefault();
-  alert("Now our project is a dev version, The Resource cant read.");
+const clickEvent = (item: any) => {
+  // router TODO code here
+  //alert("Now our project is a dev version, The Resource cant read.");
+  router.push(`postpage?page=${item.title}&url=${item.url}`);
 };
 
 // const nickClickEvent = (e: MouseEvent) => {
@@ -103,14 +107,14 @@ const searchInputChange = (v: string) => {
   //console.log(searchVal.value)
 };
 
-const resourceList = () => {
-  if (searchVal.value === "") {
-    return UserResourceDataDemos;
-  }
-  return UserResourceDataDemos.filter((item) => {
-    if (item.title.search(searchVal.value) !== -1) {
-      return item;
-    }
-  });
-};
+// const resourceList = () => {
+//   if (searchVal.value === "") {
+//     return UserResourceDataDemos;
+//   }
+//   return UserResourceDataDemos.filter((item) => {
+//     if (item.title.search(searchVal.value) !== -1) {
+//       return item;
+//     }
+//   });
+// };
 </script>

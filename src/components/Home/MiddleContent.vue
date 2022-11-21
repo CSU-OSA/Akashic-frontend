@@ -1,14 +1,14 @@
 <template>
   <n-space>
-    <n-h1 class="font-semibold">The home for all CSUers —— including you.</n-h1>
-    <p>
-      Welcome to Akashic.This is a good place for you to find what you want.
-    </p>
+    <n-h1 class="font-semibold"
+      >Akashic —— 一个CSUer们共建共享的开源资源库</n-h1
+    >
+    <p>欢迎来到Akashic！你想要的一切都可以在这里找到~</p>
   </n-space>
   <n-divider />
 
   <n-space vertical>
-    <n-h4>* Some interesting things you may be like👍:</n-h4>
+    <n-h4>* 你也许会喜欢👍:</n-h4>
     <div>
       <n-list hoverable clickable>
         <n-list-item v-for="item in demoDataList" :key="item.id">
@@ -19,11 +19,11 @@
   </n-space>
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
 import MiddleContentItem from "./MiddleContentItem.vue";
 import { useRecommendResource } from "@/api/Home/HomeData";
 
-const demoDataList = useRecommendResource();
+const demoDataList = await useRecommendResource();
 </script>
 
 <style scoped></style>

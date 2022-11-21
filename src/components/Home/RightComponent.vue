@@ -1,6 +1,6 @@
 <template>
   <n-space vertical>
-    <n-h4>Latest FootPoint🚶‍</n-h4>
+    <n-h4>足迹🚶‍</n-h4>
     <n-timeline>
       <n-timeline-item
         v-for="item in demoTimeDataList"
@@ -14,14 +14,14 @@
   <n-divider />
 
   <n-space vertical>
-    <n-h4>Hot Resource🔥</n-h4>
+    <n-h4>热门资源🔥</n-h4>
     <n-list hoverable clickable>
       <n-message-provider>
         <n-list-item v-for="item in demoHotDataList" :key="item.id">
           <n-thing
             :title="item.title"
             :description="item.description"
-            @click="listItemClickEvent"
+            @click="()=>clickEvent(item)"
             description-style="font-size: 0.75em"
           >
             <template #avatar>
@@ -37,14 +37,17 @@
   <n-divider />
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
+import { useRouter } from "vue-router";
 
-const demoTimeDataList = useUserFootPoint();
+const router = useRouter();
 
-const demoHotDataList = useHotResource();
+const demoTimeDataList = await useUserFootPoint();
+
+const demoHotDataList = await useHotResource();
 
 const iconType = (data: IResource) => {
   if (data.type === "code") {
@@ -56,8 +59,10 @@ const iconType = (data: IResource) => {
   }
 };
 
-const listItemClickEvent = () => {
-  alert("Now our project is a dev version, The Resource cant read.");
+const clickEvent = (item: any) => {
+  // router TODO code here
+  //alert("Now our project is a dev version, The Resource cant read.");
+  router.push(`postpage?page=${item.title}&url=${item.url}`);
 };
 </script>
 

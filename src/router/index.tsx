@@ -40,16 +40,16 @@ const router = createRouter({
       component: Upload,
     },
     {
-      path: "/postpage",
-      component: <PostPage />,
-    },
-    {
       path: "/personal",
       component: PersonalInfoView,
     },
     {
       path: "/PostPage",
       component: PostPage,
+    },
+    {
+      path: "/wiki",
+      redirect: (router)=>window.location.href = "http://csu-cs-wiki.itryagain.cn/",
     },
   ],
 });

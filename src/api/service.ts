@@ -4,20 +4,15 @@ import type { InjectionKey } from "vue";
 import { provide, inject } from "vue";
 import config from "$/services";
 
-const RESTFUL_REQUESTER_INJECT_KEY: InjectionKey<AxiosInstance> =
-  Symbol.for("$RESTFUL_REQUESTER");
-
-export function useRESTfulService(requester: AxiosInstance) {
-  provide(RESTFUL_REQUESTER_INJECT_KEY, requester);
-}
-
 export class RESTful {
   private baseUrl: string;
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
+  private serviceInjectKey: InjectionKey<IRequester>;
+  constructor(serviceInjectKey: InjectionKey<IRequester>, baseUrl?: string) {
+    this.baseUrl = baseUrl || "/";
+    this.serviceInjectKey = serviceInjectKey;
   }
   private get =
-    (requester: AxiosInstance) =>
+    (requester: IRequester) =>
     async <R = any, Q = any, P = any>(
       url: string,
       query?: Q,
@@ -31,8 +26,8 @@ export class RESTful {
       });
     };
   private post =
-    (requester: AxiosInstance) =>
-    async <R = any, P = any>(url: string, data: P, headers?: any) => {
+    (requester: IRequester) =>
+    async <R = any, P = any>(url: string, data?: P, headers?: any) => {
       return requester.post<any, AxiosResponse<R>>(
         `${this.baseUrl}/${url}`,
         data,
@@ -50,7 +45,7 @@ export class RESTful {
     }) => Requester
   ) {
     return () => {
-      const requester = inject(RESTFUL_REQUESTER_INJECT_KEY);
+      const requester = inject(this.serviceInjectKey);
 
       if (!requester) {
         throw Error(
@@ -68,7 +63,44 @@ export class RESTful {
   }
 }
 
-const casdoorService = new RESTful(config.baseURL.casdoor);
-const akashicService = new RESTful(config.baseURL.api);
+interface IRequester {
+  get: AxiosInstance["get"];
+  post: AxiosInstance["post"];
+}
 
-export { casdoorService, akashicService };
+interface IServiceConfig {
+  baseURL: string;
+}
+
+export function defineRESTfulService(
+  serviceName: string,
+  config?: IServiceConfig
+): [RESTful, (requester: IRequester) => void] {
+  const serviceInjectKey: InjectionKey<IRequester> = Symbol.for(serviceName);
+
+  return [
+    new RESTful(serviceInjectKey, config?.baseURL),
+    (requester: IRequester) => provide(serviceInjectKey, requester),
+  ];
+}
+
+const [casdoorService, useCasdoorService] = defineRESTfulService(
+  "casdoor-service",
+  { baseURL: config.baseURL.casdoor }
+);
+
+const [akashicService, useAkashicService] = defineRESTfulService(
+  "akashic-service",
+  { baseURL: config.baseURL.api }
+);
+
+const [mockService, useMockService] = defineRESTfulService("mock-service");
+
+export {
+  casdoorService,
+  useCasdoorService,
+  akashicService,
+  useAkashicService,
+  mockService,
+  useMockService,
+};

@@ -21,6 +21,9 @@
 import { computed } from "vue";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import type { IResource } from "@/domain/resource.interface";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const props = defineProps<{ prop: IResource }>();
 
@@ -47,7 +50,8 @@ const iconType = computed(() => {
 const clickEvent = (e: MouseEvent) => {
   // router TODO code here
   e.preventDefault();
-  alert("Now our project is a dev version, The Resource cant read.");
+  //alert("Now our project is a dev version, The Resource cant read.");
+  router.push(`postpage?page=${props.prop.title}&url=${props.prop.url}`);
 };
 </script>
 
