@@ -6,7 +6,6 @@ const useUpload = akashicService.defineRequest(({ post }) => {
     form.append("file", file);
     form.append("des", file.name);
     post<{ data: { msg: string } }>("file/upload", form, {
-      "Remote-User": `Akashic/${userName}`,
       "Content-Type": "multipart/form-data",
     });
   };
