@@ -16,6 +16,13 @@
       <PostComponent />
     </div>
     <div id="content" class="bg-surface w-full p-15 block md:block">
+      <h1 class="text-5xl">{{title}}</h1>
+      <a
+        v-if="url.length !== 0"
+        class="cursor-pointer text-xl underline"
+        :href="url"
+        >download</a
+      >
       <md-parser></md-parser>
       <download-area></download-area>
       <comment></comment>
