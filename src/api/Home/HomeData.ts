@@ -13,7 +13,7 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -35,28 +35,28 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
       title: "软件工程专业wiki",
       description: "",
       type: "wiki",
-      url: "/wiki/xxxx",
+      url: ""
     },
     {
       id: 2,
       title: "JPetStore-SpringBoot Code",
       description: "",
       type: "code",
-      url: "/code/xxx",
+      url: "",
     },
     {
       id: 3,
       title: "Java语言设计课程资源",
       description: "",
       type: "text",
-      url: "/text/java",
+      url: "",
     },
     {
       id: 4,
       title: "软件创新大赛萌新攻略",
       description: "",
       type: "text",
-      url: "/text/sss",
+      url: "",
     },
     ...files,
   ];
@@ -72,7 +72,7 @@ export const useHotResource = async (): Promise<IResource[]> => {
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -94,28 +94,28 @@ export const useHotResource = async (): Promise<IResource[]> => {
       title: "软件工程专业wiki",
       description: "这里是软件工程专业的wiki, 正在不断维护中",
       type: "wiki",
-      url: "/wiki/xxx",
+      url: "",
     },
     {
       id: 2,
       title: "离散数学课程资源",
       description: "计算机学院离散数学课程相关资源以及学习方法总结",
       type: "text",
-      url: "/text/xxxx",
+      url: "",
     },
     {
       id: 3,
       title: "软件杯竞赛经验分享--xxx",
       description: "来着xxx的软件杯竞赛经验分享",
       type: "text",
-      url: "/text/xxxxx",
+      url: "",
     },
     {
       id: 4,
       title: "计科专业wiki",
       description: "这里是计科专业的wiki，正在不断维护中",
       type: "wiki",
-      url: "/url/xxxxxxxx",
+      url: "",
     },
     ...files,
   ];
@@ -129,7 +129,7 @@ export const useUserFootPoint = async () => {
 
   const files = reactive([] as any[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -167,7 +167,7 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -190,7 +190,7 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
       description:
         "软件工程专业Web开发技术实验一代码仓库, 由Servlet实现的JPetStore",
       type: "code",
-      url: "/code/se/xxx",
+      url: "",
     },
     {
       id: 2,
@@ -198,14 +198,14 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
       description:
         "软件工程专业web课设，基于SpringBoot的前后端分离JPetStore代码仓库",
       type: "code",
-      url: "/code/se/yyy",
+      url: "",
     },
     {
       id: 3,
       title: "CS/操作系统课设/OS_CPU-Memory-Scheduling",
       description: "计科专业操作系统课设代码仓库",
       type: "code",
-      url: "/code/cs/aaa",
+      url: "",
     },
     ...files,
   ];
