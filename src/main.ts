@@ -6,7 +6,7 @@ import "mavon-editor/dist/css/index.css";
 import casdoor from "casdoor-vue-sdk";
 import App from "./App.vue";
 import router from "./router";
-import "./style/style.css";
+import "@/assets/style/style.css";
 import showdown from "showdown";
 
 const config = {

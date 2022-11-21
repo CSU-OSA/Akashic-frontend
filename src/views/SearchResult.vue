@@ -42,7 +42,7 @@ import SearchResultPageTagItem from "@/components/SearchResult/SearchResultPageT
 import type { Ref } from "vue";
 import { ref } from "vue";
 
-import "@/style/SearchResultPageStyle.css";
+import "@/assets/style/SearchResultPageStyle.css";
 
 const testTagList: ISearchTag[] = [
   {
