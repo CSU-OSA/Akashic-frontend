@@ -29,7 +29,6 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
 
   console.log(res);
 
-  return files;
   return [
     {
       id: 1,
@@ -59,13 +58,13 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
       type: "text",
       url: "/text/sss",
     },
+    ...files,
   ];
 };
 
 // TODO 获取热门资源列表,用来展示在Home右侧
 export const useHotResource = async (): Promise<IResource[]> => {
   // Real Code here
-
 
   const s = useSystemStateStore();
 
@@ -88,8 +87,6 @@ export const useHotResource = async (): Promise<IResource[]> => {
   );
 
   console.log(res);
-
-  return files;
 
   return [
     {
@@ -120,6 +117,7 @@ export const useHotResource = async (): Promise<IResource[]> => {
       type: "wiki",
       url: "/url/xxxxxxxx",
     },
+    ...files,
   ];
 };
 
@@ -163,7 +161,6 @@ export const useUserFootPoint = async () => {
 export const useRecommendResource = async (): Promise<IResource[]> => {
   // Real Code here
 
-
   const s = useSystemStateStore();
 
   const getFiles = useGetUserResources();
@@ -185,8 +182,6 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
   );
 
   console.log(res);
-
-  return files;
 
   return [
     {
@@ -212,6 +207,7 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
       type: "code",
       url: "/code/cs/aaa",
     },
+    ...files,
   ];
 };
 

@@ -21,7 +21,7 @@
           <n-thing
             :title="item.title"
             :description="item.description"
-            @click="listItemClickEvent"
+            @click="()=>clickEvent(item)"
             description-style="font-size: 0.75em"
           >
             <template #avatar>
@@ -41,6 +41,9 @@
 import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const demoTimeDataList = await useUserFootPoint();
 
@@ -56,8 +59,10 @@ const iconType = (data: IResource) => {
   }
 };
 
-const listItemClickEvent = () => {
-  alert("Now our project is a dev version, The Resource cant read.");
+const clickEvent = (item: any) => {
+  // router TODO code here
+  //alert("Now our project is a dev version, The Resource cant read.");
+  router.push(`postpage?page=${item.title}&url=${item.url}`);
 };
 </script>
 
