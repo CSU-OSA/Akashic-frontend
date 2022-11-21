@@ -4,7 +4,7 @@
       class="typewriter w-full h-full flex flex-col justify-center items-center p-2 welcome-view-layout"
     >
       <h1 class="welcome-view-title text-center font-bold text-7xl md:text-9xl">
-        Akashic
+        分享，共赢
       </h1>
       <div class="flex gap-5 m-10">
         <button

@@ -1,5 +1,6 @@
 import type { IUser } from "@/domain/user.interface";
 import { akashicService } from "../service";
+import { useSystemStateStore } from "@/stores/systemStateStore";
 
 /**
  * @deprecated
@@ -7,16 +8,17 @@ import { akashicService } from "../service";
 const tempSaveFileName = (fileName: string) => {
   let fileNames = [];
   try {
-    fileNames = JSON.parse(localStorage.getItem("fileNames") as string);
+    fileNames = JSON.parse(localStorage.getItem(`fileNames`) as string);
   } catch (err) {
     fileNames = [];
   }
   fileNames = fileNames || [];
   fileNames.push(fileName);
-  localStorage.setItem("fileNames", JSON.stringify(fileNames));
+  localStorage.setItem(`fileNames`, JSON.stringify(fileNames));
 };
 
 const useUpload = akashicService.defineRequest(({ post }) => {
+  const sys = useSystemStateStore();
   return async (file: File) => {
     const form = new FormData();
     form.append("file", file);
@@ -28,7 +30,7 @@ const useUpload = akashicService.defineRequest(({ post }) => {
 });
 
 const useGetUserResources = akashicService.defineRequest(({ post }) => {
-  return async (userName: IUser["name"]): Promise<any[]> => {
+  return async (): Promise<any[]> => {
     let fileNames: string[] = [];
     try {
       fileNames = JSON.parse(localStorage.getItem("fileNames") as string);
@@ -37,7 +39,7 @@ const useGetUserResources = akashicService.defineRequest(({ post }) => {
     }
     fileNames = fileNames || [];
     const files = fileNames.map((fileName) =>
-      post(`file/get_des?filename=${`Akashic/${userName}/${fileName}`}`)
+      post(`file/get_des?filename=${`Akashic/sheep/${fileName}`}`)
     );
     const res = await Promise.all(files);
     return res.map((r) => r.data.data);

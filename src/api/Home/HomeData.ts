@@ -13,7 +13,7 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -29,7 +29,6 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
 
   console.log(res);
 
-  return files;
   return [
     {
       id: 1,
@@ -59,6 +58,7 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
       type: "text",
       url: "/text/sss",
     },
+    ...files,
   ];
 };
 
@@ -66,14 +66,13 @@ export const useUserSelfResource = async (): Promise<IResource[]> => {
 export const useHotResource = async (): Promise<IResource[]> => {
   // Real Code here
 
-
   const s = useSystemStateStore();
 
   const getFiles = useGetUserResources();
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -88,8 +87,6 @@ export const useHotResource = async (): Promise<IResource[]> => {
   );
 
   console.log(res);
-
-  return files;
 
   return [
     {
@@ -120,6 +117,7 @@ export const useHotResource = async (): Promise<IResource[]> => {
       type: "wiki",
       url: "/url/xxxxxxxx",
     },
+    ...files,
   ];
 };
 
@@ -131,7 +129,7 @@ export const useUserFootPoint = async () => {
 
   const files = reactive([] as any[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -163,14 +161,13 @@ export const useUserFootPoint = async () => {
 export const useRecommendResource = async (): Promise<IResource[]> => {
   // Real Code here
 
-
   const s = useSystemStateStore();
 
   const getFiles = useGetUserResources();
 
   const files = reactive([] as IResource[]);
 
-  const res = await getFiles(s.$state.user?.name as string);
+  const res = await getFiles();
 
   console.log("res>>>", res);
 
@@ -185,8 +182,6 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
   );
 
   console.log(res);
-
-  return files;
 
   return [
     {
@@ -212,6 +207,7 @@ export const useRecommendResource = async (): Promise<IResource[]> => {
       type: "code",
       url: "/code/cs/aaa",
     },
+    ...files,
   ];
 };
 
