@@ -22,7 +22,7 @@
         <n-list-item
           v-for="item in resourceList"
           :key="item.id"
-          @click="clickEvent"
+          @click="() => clickEvent(item)"
         >
           <n-thing>
             <template #avatar>
@@ -89,9 +89,10 @@ const AddBtnClickEvent = (e: MouseEvent) => {
   router.push("/upload");
 };
 
-const clickEvent = (e: MouseEvent) => {
-  e.preventDefault();
-  alert("Now our project is a dev version, The Resource cant read.");
+const clickEvent = (item: any) => {
+  // router TODO code here
+  //alert("Now our project is a dev version, The Resource cant read.");
+  router.push(`postpage?page=${item.title}&url=${item.url}`);
 };
 
 // const nickClickEvent = (e: MouseEvent) => {
