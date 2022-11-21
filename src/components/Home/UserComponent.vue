@@ -9,11 +9,11 @@
     <n-hr class="mt-0.5" />
     <n-space vertical>
       <n-space justify="space-between">
-        <n-h4>Recent Resource</n-h4>
+        <n-h4>最近</n-h4>
         <n-button class="lg:block" @click="AddBtnClickEvent"> Add </n-button>
       </n-space>
       <n-input
-        placeholder="Find a Resource"
+        placeholder="查找你的帖子/仓库"
         size="large"
         @input="searchInputChange"
       ></n-input>
@@ -41,7 +41,7 @@
     <n-hr class="mt-0.5" />
 
     <n-space vertical>
-      <n-h4>Recent Tags</n-h4>
+      <n-h4>最近常看的标签</n-h4>
       <n-space>
         <template v-for="tag in UserTagsDataDemos" :key="tag.id">
           <n-tag :type="tag.display">{{ tag.label }}</n-tag>
@@ -69,7 +69,7 @@ const searchVal = ref("");
 // 从api中调用函数获取用户自己的资源列表
 const resourceList = await useUserSelfResource();
 
-console.log('>>>>',resourceList);
+console.log(">>>>", resourceList);
 computed(() => console.log(resourceList));
 
 const UserTagsDataDemos = useUserTags();

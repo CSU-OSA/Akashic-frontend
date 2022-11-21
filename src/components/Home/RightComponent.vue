@@ -1,6 +1,6 @@
 <template>
   <n-space vertical>
-    <n-h4>Latest FootPoint🚶‍</n-h4>
+    <n-h4>足迹🚶‍</n-h4>
     <n-timeline>
       <n-timeline-item
         v-for="item in demoTimeDataList"
@@ -14,7 +14,7 @@
   <n-divider />
 
   <n-space vertical>
-    <n-h4>Hot Resource🔥</n-h4>
+    <n-h4>热门资源🔥</n-h4>
     <n-list hoverable clickable>
       <n-message-provider>
         <n-list-item v-for="item in demoHotDataList" :key="item.id">
@@ -37,7 +37,7 @@
   <n-divider />
 </template>
 
-<script async  setup lang="ts">
+<script async setup lang="ts">
 import type { IResource } from "@/domain/resource.interface";
 import { CodeSlash, EarthSharp, DocumentTextOutline } from "@vicons/ionicons5";
 import { useHotResource, useUserFootPoint } from "@/api/Home/HomeData";
