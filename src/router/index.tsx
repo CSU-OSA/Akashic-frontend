@@ -7,6 +7,7 @@ import Logout from "@/views/LogoutView.vue";
 import Upload from "@/views/FileUploadView.vue";
 import PersonalInfoView from "@/views/PersonalInfoView.vue";
 import WelcomeView from "@/views/WelcomeView.vue";
+import ManageMentView from "@/views/ManageMentView.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -26,6 +27,10 @@ const router = createRouter({
     {
       path: "/search",
       component: SearchResult,
+    },
+    {
+      path: "/management",
+      component: ManageMentView,
     },
     {
       path: "/login/:status",
